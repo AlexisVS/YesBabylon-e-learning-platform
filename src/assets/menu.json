@@ -1,0 +1,34 @@
+{
+  "name": "YesBabylon e-learning platform menu",
+  "access": {
+    "groups": ["users"]
+  },
+  "layout": {
+    "items": [
+      {
+        "id": "accueil",
+        "type": "entry",
+        "label": "Accueil",
+        "description": "Accueil de YesBabylon e-learning platform",
+        "icon": "home",
+        "url": "/"
+      },
+      {
+        "id": "cours",
+        "type": "entry",
+        "label": "Cours",
+        "description": "Cours de YesBabylon e-learning platform",
+        "icon": "school",
+        "url": "/courses"
+      },
+      {
+        "id": "account",
+        "type": "entry",
+        "label": "Mon compte",
+        "description": "Mon compte de YesBabylon e-learning platform",
+        "icon": "manage_accounts",
+        "url": "/account"
+      }
+    ]
+  }
+}

@@ -36,6 +36,11 @@ import { AccountComponent } from './in/account/account.component';
 import { MyProfileComponent } from './in/account/my-profile/my-profile.component';
 import { MyCoursesComponent } from './in/account/my-courses/my-courses.component';
 import { SettingsComponent } from './in/account/settings/settings.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {FormsModule} from '@angular/forms';
 
 registerLocaleData(localeFr);
 
@@ -65,7 +70,12 @@ registerLocaleData(localeFr);
     MatNativeDateModule,
     PlatformModule,
     NgxMaterialTimepickerModule.setLocale('fr-BE'),
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatInputModule,
+    MatListModule,
+    MatIconModule,
+    FormsModule
   ],
   providers: [
     // add HTTP interceptor to inject AUTH header to any outgoing request
