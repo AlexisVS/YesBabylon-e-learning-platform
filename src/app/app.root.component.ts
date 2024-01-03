@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
+// @ts-ignore
 import { ContextService, ApiService, AuthService, EnvService } from 'sb-shared-lib';
 
-import * as $ from 'jquery';
-import { type } from 'jquery';
+// import * as $ from 'jquery';
+// import { type } from 'jquery';
 
 
 /*
@@ -50,13 +51,13 @@ export class AppRootComponent implements OnInit {
 
     public async ngOnInit() {
 
-        try {
-            await this.auth.authenticate();
-        }
-        catch(err) {
-            window.location.href = '/auth';
-            return;
-        }
+        // try {
+        //     await this.auth.authenticate();
+        // }
+        // catch(err) {
+        //     window.location.href = '/auth';
+        //     return;
+        // }
 
         // load menus from server
         this.env.getEnv().then( async (environment:any) => {

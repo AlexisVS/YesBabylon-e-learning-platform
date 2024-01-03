@@ -1,4 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
+// @ts-ignore
 import { ContextService } from 'sb-shared-lib';
 
 @Component({
