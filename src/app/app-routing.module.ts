@@ -36,6 +36,7 @@ const routes: Routes = [
     ]
   },
   {path: 'courses', component: CoursesComponent},
+
   {path: 'course/:id', component: CourseComponent},
   {path: 'course/:id/module/:id', component: ModuleComponent},
   {path: 'course/:id/module/:id/lesson/:id', component: LessonComponent},
