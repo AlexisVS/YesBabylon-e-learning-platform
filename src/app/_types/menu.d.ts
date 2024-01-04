@@ -2,15 +2,15 @@ export type Menu = {
   name: string;
   access: MenuAccess;
   layout: MenuLayout;
-}
+};
 
 export type MenuAccess = {
   groups: string[];
-}
+};
 
 export type MenuLayout = {
   items: MenuItem[];
-}
+};
 
 export type MenuItem = {
   id: string;
@@ -21,11 +21,11 @@ export type MenuItem = {
   route?: string;
   children?: MenuItem[];
   context?: MenuItemContext;
-}
+};
 
 export type MenuItemType = 'entry' | 'parent';
 
 export type MenuItemContext = {
   entity: string;
   view: string;
-}
+};

@@ -23,19 +23,6 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 
 // specific locale setting
 import localeFr from '@angular/common/locales/fr';
-import {CoursesComponent} from './in/courses/courses.component';
-import {LessonComponent} from './in/course/module/lesson/lesson.component';
-import {CourseComponent} from './in/course/course.component';
-import {ModuleComponent} from './in/course/module/module.component';
-import {PageComponent} from './in/course/module/lesson/page/page.component';
-import { LearnComponent } from './in/course/module/lesson/learn/learn.component';
-import { RessourcesComponent } from './in/course/module/lesson/learn/ressources/ressources.component';
-import { QAndAComponent } from './in/course/module/lesson/learn/q-and-a/q-and-a.component';
-import { ContentComponent } from './in/course/module/lesson/learn/content/content.component';
-import { AccountComponent } from './in/account/account.component';
-import { MyProfileComponent } from './in/account/my-profile/my-profile.component';
-import { MyCoursesComponent } from './in/account/my-courses/my-courses.component';
-import { SettingsComponent } from './in/account/settings/settings.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
@@ -48,19 +35,6 @@ registerLocaleData(localeFr);
   declarations: [
     AppRootComponent,
     AppComponent,
-    CoursesComponent,
-    LessonComponent,
-    CourseComponent,
-    ModuleComponent,
-    PageComponent,
-    LearnComponent,
-    RessourcesComponent,
-    QAndAComponent,
-    ContentComponent,
-    AccountComponent,
-    MyProfileComponent,
-    MyCoursesComponent,
-    SettingsComponent
   ],
   imports: [
     AppRoutingModule,

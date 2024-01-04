@@ -7,7 +7,7 @@ import {ContextService, ApiService, AuthService, EnvService} from 'sb-shared-lib
 
 // TODO: <AlexisVS> Added for development
 import menu from '../assets/menu.json';
-import {MenuItem} from './in/types/menu';
+import {MenuItem} from './_types/menu';
 
 // import * as $ from 'jquery';
 // import { type } from 'jquery';
