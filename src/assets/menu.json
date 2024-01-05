@@ -1,7 +1,9 @@
 {
   "name": "YesBabylon e-learning platform menu",
   "access": {
-    "groups": ["users"]
+    "groups": [
+      "users"
+    ]
   },
   "layout": {
     "items": [
@@ -28,6 +30,14 @@
         "description": "Cours de YesBabylon e-learning platform",
         "icon": "school",
         "url": "/course/1"
+      },
+      {
+        "id": "cours 1 edit",
+        "type": "entry",
+        "label": "Cours 1 edit",
+        "description": "Cours de YesBabylon e-learning platform",
+        "icon": "school",
+        "url": "/course/1/edit"
       },
       {
         "id": "account",
