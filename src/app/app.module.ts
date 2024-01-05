@@ -59,6 +59,7 @@ registerLocaleData(localeFr);
     {provide: LOCALE_ID, useValue: 'fr-BE'},
     {provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE, Platform]}
   ],
+  exports: [],
   bootstrap: [AppRootComponent]
 })
 export class AppModule {
