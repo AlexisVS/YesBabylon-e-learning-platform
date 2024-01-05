@@ -3,15 +3,15 @@ import {CourseModuleLessonPageLeafListItemComponent} from './course-module-lesso
 import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-  imports: [
-    MatIconModule
-  ],
-  declarations: [
-    CourseModuleLessonPageLeafListItemComponent
-  ],
-  exports: [
-    CourseModuleLessonPageLeafListItemComponent
-  ]
+	imports: [
+		MatIconModule
+	],
+	declarations: [
+		CourseModuleLessonPageLeafListItemComponent
+	],
+	exports: [
+		CourseModuleLessonPageLeafListItemComponent
+	]
 })
 
 export class CourseModuleLessonPageLeafListItemModule {

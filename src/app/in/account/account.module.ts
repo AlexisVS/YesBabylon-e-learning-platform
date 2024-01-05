@@ -3,10 +3,10 @@ import {AccountRoutingModule} from './account-routing.module';
 import {AccountComponent} from './account.component';
 
 @NgModule({
-  imports: [AccountRoutingModule],
-  declarations: [
-    AccountComponent
-  ],
+	imports: [AccountRoutingModule],
+	declarations: [
+		AccountComponent
+	],
 })
 
 export class AppInAccountModule {

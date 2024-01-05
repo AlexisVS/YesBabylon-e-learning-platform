@@ -7,15 +7,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {CourseModuleLessonListItemModule} from './_components/course-module-lesson-list-item/course-module-lesson-list-item.module';
 
 @NgModule({
-  imports: [
-    ModuleRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    CourseModuleLessonListItemModule
-  ],
-  declarations: [
-    ModuleComponent,
-  ],
+	imports: [
+		ModuleRoutingModule,
+		MatButtonModule,
+		MatIconModule,
+		CourseModuleLessonListItemModule
+	],
+	declarations: [
+		ModuleComponent,
+	],
 })
 
 export class AppInCourseModuleModule {

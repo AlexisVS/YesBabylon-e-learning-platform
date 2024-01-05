@@ -3,12 +3,12 @@ import {LearnRoutingModule} from './learn-routing.module';
 import {LearnComponent} from './learn.component';
 
 @NgModule({
-  imports: [
-    LearnRoutingModule
-  ],
-  declarations: [
-    LearnComponent
-  ],
+	imports: [
+		LearnRoutingModule
+	],
+	declarations: [
+		LearnComponent
+	],
 })
 
 export class AppInCourseModuleLessonLearnModule {

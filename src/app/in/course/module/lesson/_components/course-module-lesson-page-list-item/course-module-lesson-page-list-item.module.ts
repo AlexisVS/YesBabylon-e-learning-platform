@@ -3,15 +3,15 @@ import {CourseModuleLessonPageListItemComponent} from './course-module-lesson-pa
 import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-  imports: [
-    MatIconModule
-  ],
-  declarations: [
-    CourseModuleLessonPageListItemComponent
-  ],
-  exports: [
-    CourseModuleLessonPageListItemComponent
-  ]
+	imports: [
+		MatIconModule
+	],
+	declarations: [
+		CourseModuleLessonPageListItemComponent
+	],
+	exports: [
+		CourseModuleLessonPageListItemComponent
+	]
 })
 
 export class CourseModuleLessonPageListItemModule {
