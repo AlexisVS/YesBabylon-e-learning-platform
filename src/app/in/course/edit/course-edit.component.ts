@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./course-edit.component.scss']
 })
 export class CourseEditComponent implements OnInit {
+	public title = 'Course Edit';
 
 	constructor() {
 	}

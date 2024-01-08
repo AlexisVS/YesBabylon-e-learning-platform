@@ -1,0 +1,17 @@
+.input-transformer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+
+
+  // Need to add something for change the align-self property when it's
+  // not a input or a textarea
+  // because the input and textarea have a different alignement
+  & > * {
+    align-self: center;
+    margin-right: 1rem;
+    height: max-content;
+  }
+
+}

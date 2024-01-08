@@ -1,0 +1,33 @@
+<!--<ng-template ngIf="isEditing"></ng-template>-->
+<div class="input-transformer">
+  <ng-content *ngIf="!isEditing; else elseBlock" (click)="onClick=$event">
+  </ng-content>
+
+  <ng-template #elseBlock>
+    <mat-form-field>
+      <mat-label>titre</mat-label>
+      <!--      Used textValue for no troubling the user when he's editing-->
+      <input matInput type="text" *ngIf="textValue.length <= 20; else elseInput" [formControl]="text"/>
+    </mat-form-field>
+
+    <ng-template #elseInput>
+      <mat-form-field>
+        <mat-label>titre</mat-label>
+        <textarea
+          matInput
+          [autofocus]="true"
+          [autocapitalize]="true"
+          [matTextareaAutosize]="true"
+          [formControl]="text"
+          type="text"
+          rows="5"
+          cols="30"
+        ></textarea>
+      </mat-form-field>
+    </ng-template>
+
+    <button type="submit" mat-flat-button color="primary" (click)="onSubmit($event)">Save</button>
+    <button mat-flat-button color="warn" (click)="onCancel($event)">Cancel</button>
+  </ng-template>
+
+</div>

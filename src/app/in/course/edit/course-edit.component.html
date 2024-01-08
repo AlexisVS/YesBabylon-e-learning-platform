@@ -12,10 +12,15 @@
           <div class="course-edit__view__details__container">
 
             <div class="course-edit__view__details__container__left">
-              <h2 class="course-edit__view__details__container__left__title">Title course</h2>
+
+              <app-input-transformer [(textValue)]="title">
+                <h2 class="course-edit__view__details__container__left__title">{{ title }}</h2>
+              </app-input-transformer>
+
               <p class="course-edit__view__details__container__left__subtitle">subtitle, Lorem ipsum dolor sit amet,
-                consectetur
-                adipisicing elit. Debitis dicta in, nobis quam quis ratione reprehenderit sit ut velit veritatis?</p>
+                consectetur adipisicing elit. Debitis dicta in, nobis quam quis ratione reprehenderit sit ut velit
+                veritatis?
+              </p>
               <div class="course-edit__view__details__container__left__actions">
                 <button mat-raised-button color="primary">Primary</button>
                 <button mat-raised-button color="accent">Accent</button>
@@ -39,6 +44,7 @@
             exercitationem
             expedita facilis, fuga id ipsam ipsum iure maxime 3nobis nostrum officia, optio porro quasi rerum! A.
           </p>
+
         </div>
 
 
@@ -55,7 +61,7 @@
   </div>
 
   <div class="course-edit__edit">
-        <app-course-edition-panel></app-course-edition-panel>
+    <app-course-edition-panel></app-course-edition-panel>
 
   </div>
 
