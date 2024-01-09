@@ -30,7 +30,7 @@ export class InputTransformerComponent implements OnInit, OnChanges {
 	ngOnInit(): void {
 		this.text.setValue(this.textValue);
 		this.mode = 'view';
-	};
+	}
 
 	// lorsque le contexte est changé
 	ngOnChanges(): void {
