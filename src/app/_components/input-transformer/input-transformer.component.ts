@@ -1,6 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, ChangeDetectorRef} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
+type mode = 'view' | 'edit';
+type element = 'title' | 'subtitle' | 'description';
+
 @Component({
 	selector: 'app-input-transformer',
 	templateUrl: './input-transformer.component.html',
@@ -11,7 +14,11 @@ export class InputTransformerComponent implements OnInit, OnChanges {
 	@Input() textValue!: string;
 	@Output() textValueChange = new EventEmitter<string>();
 
-	public isEditing: boolean = false;
+	@Input() element: element;
+	@Input() rowNumber: number = 2;
+
+
+	public mode: mode;
 
 	public text: FormControl = new FormControl(this.textValue || '');
 
@@ -22,6 +29,7 @@ export class InputTransformerComponent implements OnInit, OnChanges {
 
 	ngOnInit(): void {
 		this.text.setValue(this.textValue);
+		this.mode = 'view';
 	};
 
 	// lorsque le contexte est changé
@@ -32,18 +40,18 @@ export class InputTransformerComponent implements OnInit, OnChanges {
 	public onClick(event: Event): void {
 		event.stopPropagation();
 
-		if (this.isEditing) {
+		if (this.mode === 'edit') {
 			return;
 		}
 		this.text = new FormControl(this.textValue || '');
-		this.isEditing = true;
+		this.mode = 'edit';
 	};
 
 	public onSubmit(event: Event): void {
 		event.stopPropagation();
 
 		this.textValueChange.emit(this.text.value);
-		this.isEditing = false;
+		this.mode = 'view';
 		this.changeDetectorRef.detectChanges();
 	};
 
@@ -51,7 +59,15 @@ export class InputTransformerComponent implements OnInit, OnChanges {
 		event.stopPropagation();
 
 		this.text.setValue(this.textValue);
-		this.isEditing = false;
+		this.mode = 'view';
 	};
+
+	public setInputElementClass(): string {
+		if (!this.element) {
+			return '';
+		}
+
+		return `text__course__${this.element}`;
+	}
 
 }

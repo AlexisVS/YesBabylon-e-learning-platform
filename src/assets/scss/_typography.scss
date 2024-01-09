@@ -1,0 +1,31 @@
+.text__course__title {
+  font-size: 22px !important;
+  line-height: 26.4px !important;
+  font-weight: 450 !important;
+  letter-spacing: -0.266667px !important;
+  color: rgb(33, 33, 33) !important;
+}
+
+.text__course__subtitle {
+  color: rgb(66, 66, 66) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  line-height: 24px !important;
+}
+
+.text__course__description {
+  color: rgb(66, 66, 66) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  line-height: 24px !important;
+}
+
+@media screen and (min-width: 1366px) {
+  .text__course__title {
+    font-size: 32px !important;
+    font-weight: 400 !important;
+    line-height: 38.4px !important;
+  }
+}

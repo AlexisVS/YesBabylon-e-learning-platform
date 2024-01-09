@@ -8,6 +8,7 @@ import {CourseEditComponent} from './edit/course-edit.component';
 import {CourseEditionPanelModule} from './edit/_components/course-edition-panel/course-edition-panel.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {InputTransformerModule} from '../../_components/input-transformer/input-transformer.module';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,8 @@ import {InputTransformerModule} from '../../_components/input-transformer/input-
 		CourseModuleListItemModule,
 		CourseEditionPanelModule,
 		MatTabsModule,
-		InputTransformerModule
+		InputTransformerModule,
+		MatInputModule
 	],
 	declarations: [
 		CourseComponent,

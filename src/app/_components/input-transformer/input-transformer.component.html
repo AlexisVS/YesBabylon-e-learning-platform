@@ -1,33 +1,61 @@
 <div class="input-transformer">
-  <ng-content *ngIf="!isEditing; else elseBlock" (click)="onClick=$event">
-  </ng-content>
+  <ng-container *ngIf="mode === 'view'">
+    <mat-form-field
+      [ngClass]="'input-transformer__view-input'"
+    >
+      <textarea
+        (click)="onClick($event)"
+        [class]="setInputElementClass()"
+        class="input-transformer__view-input__textarea cursor-pointer"
+        matInput
+        [rows]="rowNumber"
+        [value]="textValue"></textarea>
+      <div
 
-  <ng-template #elseBlock>
-    <mat-form-field>
-      <!--      Used textValue for no troubling the user when he's editing-->
-      <input matInput type="text" *ngIf="textValue.length <= 20; else elseInput" [formControl]="text"/>
+      ></div>
+    </mat-form-field>
+  </ng-container>
+  <!--  <ng-content>-->
+  <!--  </ng-content>-->
+
+  <ng-container *ngIf="mode === 'edit'">
+    <mat-form-field
+      class="input-transformer__edit__input"
+    >
+      <textarea
+        [class]="setInputElementClass()"
+        class="input-transformer__edit__input__textarea"
+        matInput
+        [rows]="rowNumber"
+        [formControl]="text"
+        autofocus></textarea>
     </mat-form-field>
 
-    <ng-template #elseInput>
-      <mat-form-field>
-        <textarea
-          matInput
-          [autofocus]="true"
-          [autocapitalize]="true"
-          [matTextareaAutosize]="true"
-          [formControl]="text"
-          type="text"
-          rows="1"
-        ></textarea>
-      </mat-form-field>
-    </ng-template>
+    <!--    <ng-template #elseInput>-->
+    <!--      <mat-form-field>-->
+    <!--        <textarea-->
+    <!--          matInput-->
+    <!--          [autofocus]="true"-->
+    <!--          [autocapitalize]="true"-->
+    <!--          [matTextareaAutosize]="true"-->
+    <!--          [formControl]="text"-->
+    <!--          type="text"-->
+    <!--          rows="1"-->
+    <!--        ></textarea>-->
+    <!--      </mat-form-field>-->
+    <!--    </ng-template>-->
 
-    <button type="submit" mat-raised-button color="primary" (click)="onSubmit($event)">
-      <mat-icon aria-hidden="false" aria-label="Validate">done</mat-icon>
-    </button>
-    <button mat-raised-button color="warn" (click)="onCancel($event)">
-      <mat-icon aria-hidden="false" aria-label="Reset">close</mat-icon>
-    </button>
-  </ng-template>
+    <div class="input-transformer__edit__buttons">
 
+
+      <button mat-mini-fab color="primary" (click)="onSubmit($event)">
+        <mat-icon aria-hidden="false" aria-label="Validate">done</mat-icon>
+      </button>
+
+      <button mat-mini-fab color="warn" (click)="onCancel($event)">
+        <mat-icon aria-hidden="false" aria-label="Reset">close</mat-icon>
+      </button>
+    </div>
+
+  </ng-container>
 </div>

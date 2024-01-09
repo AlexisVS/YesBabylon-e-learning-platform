@@ -15,7 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 		MatFormFieldModule,
 		MatInputModule,
 		ReactiveFormsModule,
-		MatIconModule
+		MatIconModule,
 	],
 	declarations: [
 		InputTransformerComponent

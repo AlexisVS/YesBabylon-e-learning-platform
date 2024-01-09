@@ -25,14 +25,13 @@
         flex-direction: row;
 
         &__left {
-          width: 60ch;
+          //noinspection CssInvalidPropertyValue
+          width: -webkit-fill-available;
+          //noinspection CssInvalidPropertyValue
+          width: -moz-available;
           display: flex;
           flex-direction: column;
           margin-right: .5rem;
-
-          &__title, &__subtitle {
-            cursor: pointer;
-          }
 
           &__actions {
             display: inline-flex;
@@ -44,13 +43,13 @@
 
         &__right {
           width: 100%;
+          max-width: 150px;
           display: flex;
           align-items: baseline;
           justify-content: center;
           margin: 0 auto;
 
           &__img {
-            max-width: 300px;
             height: auto;
             width: 100%;
             object-fit: contain;
@@ -72,7 +71,6 @@
         margin-top: 0.5rem;
         margin-bottom: 1rem;
         font-weight: 600;
-        word-break: break-all;
       }
 
       &__list {
@@ -93,3 +91,10 @@
   }
 }
 
+@media screen and (min-width: 1550px) {
+  .course-edit__view__details__container__right {
+    min-width: 200px;
+    width: 15vw;
+    max-width: 350px;
+  }
+}

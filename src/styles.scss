@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+@import "assets/scss/typography.scss";
+@import "assets/scss/helpers.scss";
+
 
 body {
   overflow: hidden;
@@ -27,7 +30,7 @@ body {
 
   .timepicker-dial__control {
     outline: none;
-  }  
+  }
 
   .clock-face__clock-hand {
     background-color: #3f51b5 !important;
