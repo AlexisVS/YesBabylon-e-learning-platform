@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="module-edit.component.scss" />
+<section class="course-edit">
+    <div class="view">
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>preview</mat-icon>
+                    Content
+                </ng-template>
+                <div class="details">
+                    <div class="container">
+                        <h2 class="text__course__title">Title course</h2>
+                        <p class="text__course__subtitle">
+                            subtitle, Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Debitis dicta in, nobis quam quis
+                            ratione reprehenderit sit ut velit veritatis?
+                        </p>
+                        <div class="actions">
+                            <button mat-raised-button color="primary">
+                                Primary
+                            </button>
+                            <button mat-raised-button color="accent">
+                                Accent
+                            </button>
+                            <button mat-raised-button color="warn">
+                                Accent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <h3 class="title text__course__title">Modules</h3>
+
+                    <div class="list">
+                        <app-course-module-lesson-list-item></app-course-module-lesson-list-item>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <div class="edit">
+        <app-module-edition-panel></app-module-edition-panel>
+    </div>
+</section>
