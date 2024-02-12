@@ -1,6 +1,6 @@
 :host {
     .lesson {
-        max-height: calc(100svh - 55px);
+        max-height: calc(100svh - 55px - 20px);
         height: 100%;
         padding: 16px;
         overflow-y: auto;
