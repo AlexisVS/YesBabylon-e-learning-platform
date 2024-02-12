@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-courses',
@@ -6,5 +7,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent {
-    constructor() {}
+    constructor(private router: Router) {}
+
+    public navigateToCourse(courseId: number | string): void {
+        this.router.navigate([`/course/${courseId}`]);
+    }
 }

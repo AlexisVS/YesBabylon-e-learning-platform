@@ -5,7 +5,7 @@
         compétences avec YesBabylone.
     </p>
     <div class="content">
-        <mat-card class="card" *ngFor="let course of [1,2,3,4,5]">
+        <mat-card class="card" *ngFor="let course of [1,2,3,4,5]" (click)="navigateToCourse(course)">
             <img mat-card-image
                  src="https://yesbabylon.com/wp-content/uploads/2022/04/solution-symbiose.png"
                  alt="Photo of a Shiba Inu"

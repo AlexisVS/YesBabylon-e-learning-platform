@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-course-module-lesson-list-item',
@@ -6,5 +7,14 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./course-module-lesson-list-item.component.scss'],
 })
 export class CourseModuleLessonListItemComponent {
-    constructor() {}
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
+
+    public navigateToLesson(lessonId: string | number): void {
+        this.router.navigate([`lesson/${lessonId}`], {
+            relativeTo: this.route,
+        });
+    }
 }
