@@ -1,66 +1,60 @@
-<link rel="stylesheet" href="course-edit.component.scss">
-<div class="course-edit">
+<link rel="stylesheet" href="course-edit.component.scss"/>
+<section class="course-edit">
+    <div class="view">
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>preview</mat-icon>
+                    Content
+                </ng-template>
+                <div class="details">
+                    <div class="container">
+                        <div class="left">
+                            <h2 class="text__course__title">Title course</h2>
+                            <p class="text__course__subtitle">
+                                subtitle, Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Debitis dicta in,
+                                nobis quam quis ratione reprehenderit sit ut
+                                velit veritatis?
+                            </p>
+                            <div
+                                class="actions">
+                                <button mat-raised-button color="primary">
+                                    Primary
+                                </button>
+                                <button mat-raised-button color="accent">
+                                    Accent
+                                </button>
+                                <button mat-raised-button color="warn">
+                                    Accent
+                                </button>
+                            </div>
+                        </div>
 
-  <div class="course-edit__view">
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon>preview</mat-icon>
-          Content
-        </ng-template>
-        <div class="course-edit__view__details">
-          <div class="course-edit__view__details__container">
+                        <div class="right">
+                            <img
+                                src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
+                                alt=""
+                                class="img"/>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="course-edit__view__details__container__left">
+                <div class="content">
+                    <h3
+                        class="title text__course__title">
+                        Modules
+                    </h3>
 
-              <app-input-transformer [(textValue)]="title" element="title">
-              </app-input-transformer>
+                    <div class="list">
+                        <app-course-module-list-item></app-course-module-list-item>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 
-              <app-input-transformer [(textValue)]="subtitle" element="subtitle">
-              </app-input-transformer>
-
-              <div class="course-edit__view__details__container__left__actions">
-                <button mat-raised-button color="primary">Primary</button>
-                <button mat-raised-button color="accent">Accent</button>
-                <button mat-raised-button color="warn">Accent</button>
-              </div>
-            </div>
-
-            <div class="course-edit__view__details__container__right">
-              <img
-                src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
-                alt=""
-                class="course-edit__view__details__container__right__img"
-              >
-            </div>
-
-          </div>
-
-          <app-input-transformer
-            [(textValue)]="description"
-            [rowNumber]="3"
-            element="description"
-          >
-          </app-input-transformer>
-
-        </div>
-
-
-        <div class="course-edit__view__content">
-          <h3 class="course-edit__view__content__title">Modules</h3>
-
-          <div class="course-edit__view__content__list">
-            <app-course-module-list-item></app-course-module-list-item>
-          </div>
-
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-
-  <div class="course-edit__edit">
-    <app-course-edition-panel></app-course-edition-panel>
-
-  </div>
-
-</div>
+    <div class="edit">
+        <app-course-edition-panel></app-course-edition-panel>
+    </div>
+</section>

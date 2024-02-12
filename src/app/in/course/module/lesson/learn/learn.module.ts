@@ -1,15 +1,9 @@
-import {NgModule} from '@angular/core';
-import {LearnRoutingModule} from './learn-routing.module';
-import {LearnComponent} from './learn.component';
+import { NgModule } from '@angular/core';
+import { LearnRoutingModule } from './learn-routing.module';
+import { LearnComponent } from './learn.component';
 
 @NgModule({
-	imports: [
-		LearnRoutingModule
-	],
-	declarations: [
-		LearnComponent
-	],
+    imports: [LearnRoutingModule],
+    declarations: [LearnComponent],
 })
-
-export class AppInCourseModuleLessonLearnModule {
-}
+export class AppInCourseModuleLessonLearnModule {}

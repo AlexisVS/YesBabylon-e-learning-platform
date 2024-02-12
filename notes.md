@@ -2,19 +2,21 @@
 
 ## Important notes
 
-- Added ``"resolveJsonModule": true`` and ``"allowSyntheticDefaultImports": true`` to ``tsconfig.json`` for importing te assets/menu.json
+- Added `"resolveJsonModule": true` and `"allowSyntheticDefaultImports": true` to `tsconfig.json` for importing te assets/menu.json
 
 ## Architecture
 
-Ranger les composant dans le dossier ``in``.
+Ranger les composant dans le dossier `in`.
 
 ## TODO
 
 - [x] Créer des composants de routing qui respecte la hiérarchie des entités d'Equal
 - [x] Créer une navigation (left panel)
+
   - Est ce que je doit modifier la logique dans app.root.component.ts ?
 
     <br>app.root.component.ts:
+
     ```ts
     public async ngOnInit() {
       // TODO: <AlexisVS> Disabled for development purpose
@@ -42,6 +44,7 @@ Ranger les composant dans le dossier ``in``.
       });
     }
     ```
+
 - [ ] Créer un layout pour les pages 'vitrine' ?
 - [ ] Créer la view show adapté pour {pack (course), module, chapter (lesson), page }
   - [ ] Layout ?

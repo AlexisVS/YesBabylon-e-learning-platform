@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 @import "assets/scss/typography.scss";
 @import "assets/scss/helpers.scss";
-
 
 body {
   overflow: hidden;
@@ -19,11 +18,9 @@ body {
   height: 40px !important;
 }
 
-
 /* external libraries customizations */
 
 .timepicker {
-
   .timepicker__header {
     background-color: #3f51b5 !important;
   }

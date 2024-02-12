@@ -1,39 +1,42 @@
-<link rel="stylesheet" href="course.component.scss">
-<div class="course">
-
-  <div class="course__details">
-    <div class="course__details__left">
-
-      <h2 class="course__details__left__title text__course__title">Title course</h2>
-      <p class="course__details__left__subtitle text__course__subtitle">subtitle, Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Debitis dicta in, nobis quam quis ratione reprehenderit sit ut velit veritatis?</p>
-      <div class="course__details__left__actions">
-        <button mat-raised-button color="primary">Primary</button>
-        <button mat-raised-button color="accent">Accent</button>
-        <button mat-raised-button color="warn">Accent</button>
-      </div>
-      <p class="course__details__left__description text__course__description">
-        <strong>Description:</strong>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus amet cupiditate dolore exercitationem
-        expedita facilis, fuga id ipsam ipsum iure maxime 3nobis nostrum officia, optio porro quasi rerum! A.
-      </p>
-    </div>
-    <div class="course__details__right">
-      <img
-        src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
-        alt=""
-        class="course__details__right__img"
-      >
-    </div>
-  </div>
-
-
-  <div class="course__content">
-    <h3 class="course__content__title">Modules</h3>
-
-    <div class="course__content__list">
-      <app-course-module-list-item></app-course-module-list-item>
+<link rel="stylesheet" href="course.component.scss" />
+<section class="course">
+    <div class="details">
+        <div class="left">
+            <h2 class="title text__course__title">
+                Title course
+            </h2>
+            <p class="subtitle text__course__subtitle">
+                subtitle, Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Debitis dicta in, nobis quam quis ratione reprehenderit
+                sit ut velit veritatis?
+            </p>
+            <div class="actions">
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="warn">Accent</button>
+            </div>
+            <p
+                class="description text__course__description">
+                <strong>Description:</strong>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                accusamus amet cupiditate dolore exercitationem expedita
+                facilis, fuga id ipsam ipsum iure maxime 3nobis nostrum officia,
+                optio porro quasi rerum! A.
+            </p>
+        </div>
+        <div class="right">
+            <img
+                src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
+                alt=""
+                class="img" />
+        </div>
     </div>
 
-  </div>
-</div>
+    <div class="content">
+        <h3 class="title">Modules</h3>
+
+        <div class="list">
+            <app-course-module-list-item></app-course-module-list-item>
+        </div>
+    </div>
+</section>

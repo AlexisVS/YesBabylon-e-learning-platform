@@ -32,9 +32,7 @@
               "src/build",
               "src/node_modules"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [
               "node_modules/sb-shared-lib/equal.bundle.js",
               "node_modules/marked/marked.min.js"
@@ -95,13 +93,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -115,6 +108,12 @@
             "production": {
               "devServerTarget": "symbiose:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -148,5 +147,8 @@
       }
     }
   },
-  "defaultProject": "symbiose"
+  "defaultProject": "symbiose",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

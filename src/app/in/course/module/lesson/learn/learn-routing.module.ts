@@ -1,18 +1,16 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
-import {LearnComponent} from './learn.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { LearnComponent } from './learn.component';
 
 const routes: Routes = [
-	{
-		path: '',
-		component: LearnComponent
-	}
+    {
+        path: '',
+        component: LearnComponent,
+    },
 ];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-
-export class LearnRoutingModule {
-}
+export class LearnRoutingModule {}
