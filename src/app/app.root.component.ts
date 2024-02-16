@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -32,7 +32,7 @@ declare global {
     templateUrl: './app.root.component.html',
     styleUrls: ['./app.root.component.scss'],
 })
-export class AppRootComponent implements OnInit {
+export class AppRootComponent implements OnInit, AfterViewChecked, OnDestroy {
     public show_side_menu: boolean = false;
     public show_side_bar: boolean = true;
 
@@ -41,11 +41,7 @@ export class AppRootComponent implements OnInit {
     // original (full & translated) menu for left pane
     private leftMenu: any = {};
 
-    public topMenuItems = [
-        { name: 'Dashboard' },
-        { name: 'Users' },
-        { name: 'Settings' },
-    ];
+    public topMenuItems = [{ name: 'Dashboard' }, { name: 'Users' }, { name: 'Settings' }];
     public navMenuItems: any = [];
 
     public translationsMenuLeft: any = {};
@@ -53,13 +49,44 @@ export class AppRootComponent implements OnInit {
 
     private app_root_package: string = '';
 
+    @ViewChild('asideMenu', { static: true }) asideMenu: ElementRef<HTMLDivElement>;
+
+    public timeout: any;
+
     constructor(
         private router: Router,
         private context: ContextService,
         private api: ApiService,
         private auth: AuthService,
-        private env: EnvService
+        private env: EnvService,
+        private elementRef: ElementRef
     ) {}
+
+    ngOnDestroy(): void {
+        clearTimeout(this.timeout);
+    }
+
+    ngAfterViewChecked(): void {
+        if (this.asideMenu.nativeElement instanceof HTMLDivElement) {
+            if (
+                this.asideMenu.nativeElement.children[0] &&
+                this.asideMenu.nativeElement.children[0].children[0] &&
+                this.asideMenu.nativeElement.children[0].children[0].clientWidth
+            ) {
+                const asideMenuContentWidth: number =
+                    this.asideMenu.nativeElement.children[0].children[0].clientWidth;
+
+                if (asideMenuContentWidth && asideMenuContentWidth > 0) {
+                    this.elementRef.nativeElement.style.setProperty(
+                        '--aside-menu-width',
+                        `${asideMenuContentWidth}px`
+                    );
+                }
+            } else {
+                this.elementRef.nativeElement.style.setProperty('--aside-menu-width', '250px');
+            }
+        }
+    }
 
     public async ngOnInit() {
         // TODO: <AlexisVS> Disabled for development
@@ -87,10 +114,7 @@ export class AppRootComponent implements OnInit {
             this.navMenuItems = this.leftMenu;
             // this.translationsMenuLeft = this.leftMenu.translation;
 
-            const top_menu: any = await this.api.getMenu(
-                this.app_root_package,
-                'sandbox.top'
-            );
+            const top_menu: any = await this.api.getMenu(this.app_root_package, 'sandbox.top');
             this.topMenuItems = top_menu.items;
             this.translationsMenuTop = top_menu.translation;
         });
@@ -123,10 +147,7 @@ export class AppRootComponent implements OnInit {
             ) {
                 result.push(item);
             } else if (item.children && item.children.length) {
-                let sub_result: any[] = this.getFilteredMenu(
-                    item.children,
-                    filter
-                );
+                let sub_result: any[] = this.getFilteredMenu(item.children, filter);
                 for (let item of sub_result) {
                     result.push(item);
                 }
@@ -221,10 +242,7 @@ export class AppRootComponent implements OnInit {
                 }
             }
 
-            if (
-                item.context.hasOwnProperty('purpose') &&
-                item.context.purpose == 'create'
-            ) {
+            if (item.context.hasOwnProperty('purpose') && item.context.purpose == 'create') {
                 // descriptor.context.type = 'form';
                 descriptor.context.mode = 'edit';
             }

@@ -36,7 +36,7 @@
                         placeholder="Filtre de rubrique"
                         autocomplete="off"
                         [(ngModel)]="filter"
-                        (keyup)="onchangeFilter()" />
+                        (keyup)="onchangeFilter()"/>
                     <button
                         mat-icon-button
                         *ngIf="filter?.length"
@@ -47,7 +47,8 @@
                     <mat-icon
                         *ngIf="!filter?.length"
                         style="position: absolute; right: 5px"
-                        >search</mat-icon
+                    >search
+                    </mat-icon
                     >
                 </div>
                 <mat-nav-list>
@@ -68,8 +69,9 @@
             <app-footer></app-footer>
         </div>
 
-        <div class="app-asidemenu" [class.show]="show_side_menu">
-            <app-sidemenu></app-sidemenu>
+        <div #asideMenu class="app-asidemenu" [class.show]="show_side_menu">
+            <!-- <app-sidemenu></app-sidemenu> -->
+            <app-rightmenu></app-rightmenu>
         </div>
     </div>
 </div>

@@ -1,31 +1,23 @@
-<link rel="stylesheet" href="course.component.scss" />
-<section class="course">
+<link rel="stylesheet" href="course.component.scss"/>
+<section class="course" *ngIf="course">
+    <div class="top-bar">
+        <h2 class="text__course__title">{{ course.title }}</h2>
+        <div class="actions">
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button>
+            <button mat-raised-button color="warn">Accent</button>
+        </div>
+    </div>
     <div class="details">
         <div class="left">
-            <h2 class="title text__course__title">Title course</h2>
-            <p class="subtitle text__course__subtitle">
-                subtitle, Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Debitis dicta in, nobis quam quis ratione reprehenderit
-                sit ut velit veritatis?
-            </p>
-            <div class="actions">
-                <button mat-raised-button color="primary">Primary</button>
-                <button mat-raised-button color="accent">Accent</button>
-                <button mat-raised-button color="warn">Accent</button>
-            </div>
-            <p class="description text__course__description">
-                <strong>Description:</strong>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                accusamus amet cupiditate dolore exercitationem expedita
-                facilis, fuga id ipsam ipsum iure maxime 3nobis nostrum officia,
-                optio porro quasi rerum! A.
-            </p>
+            <p class="subtitle text__course__subtitle">{{ course.subtitle }} </p>
+            <p class="description text__course__description">{{ course.description }} </p>
         </div>
         <div class="right">
             <img
                 src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
                 alt=""
-                class="img" />
+                class="img"/>
         </div>
     </div>
 

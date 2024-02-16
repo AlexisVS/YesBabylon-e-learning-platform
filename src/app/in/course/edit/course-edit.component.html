@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="course-edit.component.scss" />
-<section class="course-edit">
+<link rel="stylesheet" href="course-edit.component.scss"/>
+<section class="course-edit" *ngIf="course">
     <div class="view">
         <mat-tab-group>
             <mat-tab>
@@ -8,33 +8,28 @@
                     Content
                 </ng-template>
                 <div class="details">
+
+                    <div class="top-bar">
+                        <h2 class="text__course__title">{{ course.title }}</h2>
+                        <div class="actions">
+                            <button mat-raised-button color="primary">Primary</button>
+                            <button mat-raised-button color="accent">Accent</button>
+                            <button mat-raised-button color="warn">Accent</button>
+                        </div>
+                    </div>
+
                     <div class="container">
                         <div class="left">
-                            <h2 class="text__course__title">Title course</h2>
-                            <p class="text__course__subtitle">
-                                subtitle, Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Debitis dicta in,
-                                nobis quam quis ratione reprehenderit sit ut
-                                velit veritatis?
-                            </p>
-                            <div class="actions">
-                                <button mat-raised-button color="primary">
-                                    Primary
-                                </button>
-                                <button mat-raised-button color="accent">
-                                    Accent
-                                </button>
-                                <button mat-raised-button color="warn">
-                                    Accent
-                                </button>
-                            </div>
+                            <p class="subtitle text__course__subtitle">{{ course.subtitle }}</p>
+
+                            <p class="description text__course__description">{{ course.description }}</p>
                         </div>
 
                         <div class="right">
                             <img
                                 src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
                                 alt=""
-                                class="img" />
+                                class="img"/>
                         </div>
                     </div>
                 </div>
@@ -50,7 +45,7 @@
         </mat-tab-group>
     </div>
 
-    <div class="edit">
-        <app-course-edition-panel></app-course-edition-panel>
-    </div>
+    <!--    <div class="edit">-->
+    <!--        <app-course-edition-panel></app-course-edition-panel>-->
+    <!--    </div>-->
 </section>

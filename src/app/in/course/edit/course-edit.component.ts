@@ -1,17 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { Pack } from '../../../_types/qursus';
+import { ActivatedRoute } from '@angular/router';
+// @ts-ignore
+import { ApiService } from 'sb-shared-lib';
 
 @Component({
     selector: 'app-course-edit',
     templateUrl: './course-edit.component.html',
     styleUrls: ['./course-edit.component.scss'],
 })
-export class CourseEditComponent {
-    public title: string =
-        'Course Edit lorem ipsum dolor sit amet consectetur loremipsum dolor sit amet';
-    public subtitle: string =
-        'ipsum dolor sit amet consectetur adipisicing elit. Debitis dicta in, nobis quam quis ratione reprehenderit sit ut velit veritatis?';
-    public description: string =
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus amet cupiditate dolore exercitationem expedita facilis, fuga id ipsam ipsum iure maxime 3nobis nostrum officia, optio porro quasi rerum! A.';
+export class CourseEditComponent implements OnInit {
+    public course: Pack;
 
-    constructor() {}
+    constructor(
+        private route: ActivatedRoute,
+        private api: ApiService
+    ) {}
+
+    ngOnInit(): void {
+        const courseId: number = this.route.snapshot.params?.id;
+
+        if (courseId) {
+            this.getCourse(courseId);
+        }
+    }
+
+    private async getCourse(courseId: number): Promise<void> {
+        await this.api
+            .collect('qursus\\Pack', [['id', '=', courseId]], ['title', 'subtitle', 'description'])
+            .then((response: Pack[]): void => {
+                this.course = response[0];
+            });
+    }
 }

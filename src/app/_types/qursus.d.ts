@@ -1,52 +1,52 @@
 import * as Equal from './equal';
 
-export type Pack = {
+export interface Pack {
     id: number;
     name: string;
     title: string;
     subtitle: string;
     description: string;
-    modified: string;
-    langs_ids: number[];
-    state: Equal.ModelState;
-};
+    modified?: string;
+    langs_ids?: number[];
+    state?: Equal.ModelState;
+}
 
-export type Module = {
+export interface Module {
     id: number;
     identifier: number;
-    order: number;
     title: string;
-    link: string;
     page_count: number;
-    chapter_count: number;
     description: string;
     duration: number;
-    pack_id: number | Pack;
     modified: string;
     state: Equal.ModelState;
-    chapters: Chapter[];
-};
+    order?: number;
+    chapter_count?: number;
+    pack_id?: number | Pack;
+    link?: string;
+    chapters?: Chapter[];
+}
 
-export type Chapter = {
+export interface Chapter {
     id: number;
     identifier: number;
     modified: string;
     order: number;
     title: string;
     state: Equal.ModelState;
-    pages: Page[];
-};
+    pages?: Page[];
+}
 
-export type Page = {
+export interface Page {
     id: number;
     identifier: number;
     modified: string;
     next_active: string;
     order: number;
     leaves: Leaf[];
-};
+}
 
-export type Leaf = {
+export interface Leaf {
     id: number;
     identifier: number;
     modified: string;
@@ -58,9 +58,9 @@ export type Leaf = {
     state: Equal.ModelState;
     visible: string;
     groups: Group[];
-};
+}
 
-export type Group = {
+export interface Group {
     id: number;
     identifier: number;
     modified: string;
@@ -71,9 +71,9 @@ export type Group = {
     fixed: boolean;
     row_span: number;
     widgets: Widget[];
-};
+}
 
-export type Widget = {
+export interface Widget {
     id: number;
     identifier: number;
     modified: string;
@@ -89,7 +89,7 @@ export type Widget = {
     align: string;
     on_click: string;
     state: Equal.ModelState;
-};
+}
 
 export type WidgetType =
     | 'text'

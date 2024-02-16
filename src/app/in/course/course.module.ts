@@ -8,6 +8,7 @@ import { CourseRoutingModule } from './course-routing.module';
 import { CourseModuleListItemModule } from './_components/course-module-list-item/course-module-list-item.module';
 import { CourseEditComponent } from './edit/course-edit.component';
 import { CourseEditionPanelModule } from './edit/_components/course-edition-panel/course-edition-panel.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { CourseEditionPanelModule } from './edit/_components/course-edition-pane
         CourseEditionPanelModule,
         MatTabsModule,
         MatInputModule,
+        CommonModule,
     ],
     declarations: [CourseComponent, CourseEditComponent],
     exports: [],

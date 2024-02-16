@@ -79,9 +79,14 @@ app-menu-list-item.hidden {
 
     background: rgba(0, 0, 0, 0.04);
 
-    margin-right: -250px;
-    width: 250px;
-    flex: 0 0 250px;
+    margin-right: calc(var(--aside-menu-width, 250px) * -1);
+    //margin-right:  -250px;
+    width: var(--aside-menu-width, 250px);
+    //width: 250px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: var(--aside-menu-width, 250px);
+    //flex-basis: 250px;
     order: 3;
 }
 
@@ -99,9 +104,8 @@ app-menu-list-item.hidden {
 .app-asidemenu,
 .app-main,
 .app-sidebar {
-    transition:
-        margin-left 0.25s,
-        margin-right 0.25s,
-        width 0.25s,
-        flex 0.25s;
+    transition: margin-left 0.25s,
+    margin-right 0.25s,
+    width 0.25s,
+    flex 0.25s;
 }

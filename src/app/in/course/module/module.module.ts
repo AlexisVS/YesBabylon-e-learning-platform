@@ -7,6 +7,7 @@ import { CourseModuleLessonListItemModule } from './_components/course-module-le
 import { ModuleRoutingModule } from './module-routing.module';
 import { ModuleEditionPanelModule } from './edit/_components/module-edition-panel/module-edition-panel.module';
 import { ModuleEditComponent } from './edit/module-edit.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { ModuleEditComponent } from './edit/module-edit.component';
         MatIconModule,
         CourseModuleLessonListItemModule,
         ModuleEditionPanelModule,
+        CommonModule,
     ],
     declarations: [ModuleComponent, ModuleEditComponent],
 })

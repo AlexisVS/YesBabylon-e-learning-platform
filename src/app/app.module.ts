@@ -3,11 +3,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-    DateAdapter,
-    MatNativeDateModule,
-    MAT_DATE_LOCALE,
-} from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Platform, PlatformModule } from '@angular/cdk/platform';
 
 import {
@@ -36,11 +32,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { RightmenuComponent } from './_components/rightmenu/rightmenu.component';
 
 registerLocaleData(localeFr);
 
 @NgModule({
-    declarations: [AppRootComponent, AppComponent],
+    declarations: [AppRootComponent, AppComponent, RightmenuComponent],
     imports: [
         AppRoutingModule,
         BrowserModule,

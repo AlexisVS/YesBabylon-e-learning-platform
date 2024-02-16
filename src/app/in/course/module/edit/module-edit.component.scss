@@ -19,7 +19,27 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: 16px 8px 0 16px;
+                padding: 16px 16px 0 16px;
+
+                .top-bar {
+                    display: flex;
+                    align-items: baseline;
+                    justify-content: space-between;
+                    margin-bottom: 16px;
+
+                    .actions {
+                        display: inline-flex;
+                        justify-content: space-evenly;
+
+                        > * {
+                            margin-left: 12px;
+                        }
+
+                        > :first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
 
                 .container {
                     display: flex;
@@ -29,18 +49,13 @@
                     flex-direction: column;
                     margin-right: 0.5rem;
 
-                    .actions {
-                        display: inline-flex;
-                        justify-content: space-evenly;
-                        width: 100%;
-                        margin: 0.3rem 0;
+                    .subtitle {
+                        margin-top: 0;
                     }
-                }
 
-                .description {
-                    margin-top: 1rem;
-                    max-width: 65ch;
-                    cursor: pointer;
+                    .description {
+                        margin-top: 0;
+                    }
                 }
             }
 
@@ -64,9 +79,6 @@
                     }
                 }
             }
-        }
-
-        .edit {
         }
     }
 }

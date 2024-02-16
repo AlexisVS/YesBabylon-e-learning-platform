@@ -8,6 +8,7 @@
         padding: 4px 8px 4px 4px;
         border-radius: 5px;
         cursor: pointer;
+        margin: 16px 0;
 
         .drag {
             display: flex;
@@ -27,17 +28,6 @@
             .title {
                 font-size: 15px;
                 font-weight: 600;
-            }
-
-            .description {
-                font-size: 14px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                margin-top: 0;
-                margin-bottom: 0;
             }
         }
     }

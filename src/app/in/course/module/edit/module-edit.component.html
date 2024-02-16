@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="module-edit.component.scss" />
-<section class="course-edit">
+<section class="course-edit" *ngIf="module">
     <div class="view">
         <mat-tab-group>
             <mat-tab>
@@ -8,24 +7,18 @@
                     Content
                 </ng-template>
                 <div class="details">
-                    <div class="container">
-                        <h2 class="text__course__title">Title module</h2>
-                        <p class="text__course__subtitle">
-                            subtitle, Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Debitis dicta in, nobis quam quis
-                            ratione reprehenderit sit ut velit veritatis?
-                        </p>
+
+                    <div class="top-bar">
+                        <h2 class="text__course__title">{{ module.title }}</h2>
                         <div class="actions">
-                            <button mat-raised-button color="primary">
-                                Primary
-                            </button>
-                            <button mat-raised-button color="accent">
-                                Accent
-                            </button>
-                            <button mat-raised-button color="warn">
-                                Accent
-                            </button>
+                            <button mat-raised-button color="primary">Primary</button>
+                            <button mat-raised-button color="accent">Accent</button>
+                            <button mat-raised-button color="warn">Accent</button>
                         </div>
+                    </div>
+
+                    <div class="container">
+                        <p class="description text__course__description">{{ module.description }}</p>
                     </div>
                 </div>
 
@@ -38,9 +31,5 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
-    </div>
-
-    <div class="edit">
-        <app-module-edition-panel></app-module-edition-panel>
     </div>
 </section>

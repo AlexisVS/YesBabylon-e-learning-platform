@@ -4,24 +4,23 @@
         Bienvenue dans notre espace d'apprentissage dédié à l'évolution de vos
         compétences avec YesBabylone.
     </p>
-    <div class="content">
-        <mat-card class="card" *ngFor="let course of [1,2,3,4,5]" (click)="navigateToCourse(course)">
+    <div class="content" *ngIf="courses">
+        <mat-card class="card" *ngFor="let course of courses; trackBy: trackCourseById"
+                  (click)="navigateToCourse(course.id)">
             <img mat-card-image
                  src="https://yesbabylon.com/wp-content/uploads/2022/04/solution-symbiose.png"
-                 alt="Photo of a Shiba Inu"
+                 [alt]="course.title"
             >
 
             <mat-card-content>
-                <mat-card-title>Pack YesBabylon {{ course }}</mat-card-title>
-                <p>
-                    Formez vous a nos outils principaux. Nous utilisons principalement PHP, Typescript et Angular pour
-                    créer des applications.
-                </p>
+                <mat-card-title>{{ course.title }}</mat-card-title>
+                <mat-card-subtitle>{{ course.subtitle }}</mat-card-subtitle>
+                <p class="text__course__description">{{ course.description }}</p>
             </mat-card-content>
-<!--            <mat-card-actions>-->
-<!--                <button mat-button>LIKE</button>-->
-<!--                <button mat-button>SHARE</button>-->
-<!--            </mat-card-actions>-->
+            <!--            <mat-card-actions>-->
+            <!--                <button mat-button>LIKE</button>-->
+            <!--                <button mat-button>SHARE</button>-->
+            <!--            </mat-card-actions>-->
         </mat-card>
     </div>
 </section>
