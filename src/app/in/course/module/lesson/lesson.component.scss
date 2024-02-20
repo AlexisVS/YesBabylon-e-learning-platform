@@ -24,5 +24,40 @@
                 }
             }
         }
+
+        .additional-information {
+            width: max-content;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-evenly;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: transparentize(black, 0.96);
+            color: transparentize(black, 0.6);
+            font-weight: 480;
+            font-size: 14px;
+            white-space: nowrap;
+
+            .last-update {
+                span {
+                    color: transparentize(black, 0.4);
+                }
+            }
+
+            .author,
+            .modules-count,
+            .learning-time {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+
+                span {
+                    color: transparentize(black, 0.4);
+                }
+            }
+        }
     }
 }

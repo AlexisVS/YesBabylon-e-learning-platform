@@ -28,15 +28,17 @@
         .details {
             width: 100%;
             display: flex;
-            margin-bottom: 26px;
+            margin-bottom: 24px;
+
 
             .left {
-                width: 110ch;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
 
 
                 .additional-information {
+                    width: max-content;
                     display: flex;
                     align-items: flex-end;
                     justify-content: space-evenly;
@@ -47,6 +49,7 @@
                     color: transparentize(black, 0.6);
                     font-weight: 480;
                     font-size: 14px;
+                    white-space: nowrap;
 
                     .last-update {
                         span {
@@ -61,6 +64,7 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
+                        gap: 4px;
 
                         span {
                             color: transparentize(black, 0.4);

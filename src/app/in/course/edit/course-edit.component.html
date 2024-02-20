@@ -15,9 +15,7 @@
                             [mode]="'edit'"
                             [size]="'large'"
                             [required]="true"
-                            (valueChange)="updateCourseField($event,'title')"
-
-                        >
+                            (valueChange)="updateCourseField($event, 'title')">
                         </eq-string>
                         <div class="actions">
                             <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
@@ -34,8 +32,7 @@
                                 [mode]="'edit'"
                                 [size]="'normal'"
                                 [required]="true"
-                                (valueChange)="updateCourseField($event,'subtitle')"
-                            >
+                                (valueChange)="updateCourseField($event, 'subtitle')">
                             </eq-string>
 
                             <eq-string
@@ -44,13 +41,36 @@
                                 [mode]="'edit'"
                                 [size]="'normal'"
                                 [required]="true"
-                                (valueChange)="updateCourseField($event,'description')"
-                            >
+                                (valueChange)="updateCourseField($event, 'description')">
                             </eq-string>
+                            <div class="additional-information">
+                                <span class="last-update">
+                                    Last modification:
+                                    <span> {{ course.modified | date: 'shortDate' }}</span>
+                                </span>
+
+                                <div class="author">
+                                    <mat-icon>attribution</mat-icon>
+                                    <span>Cédric François</span>
+                                </div>
+
+                                <div class="modules-count">
+                                    <mat-icon>view_module</mat-icon>
+                                    <span>{{ course.id }}</span>
+                                </div>
+
+                                <div class="learning-time">
+                                    <mat-icon>schedule</mat-icon>
+                                    <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="right">
-                            <img src="https://placehold.co/600x400/EEE/31343C?text=Image+course" alt="" class="img mat-elevation-z3" />
+                            <img
+                                src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
+                                alt=""
+                                class="img mat-elevation-z3" />
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,6 @@
 <section class="course" *ngIf="course">
     <div class="top-bar">
-        <eq-string
-            [title]="'Course title'"
-            [value]="course.title"
-            [mode]="'view'"
-            [size]="'large'"
-            [required]="true"
-        >
+        <eq-string [title]="'Course title'" [value]="course.title" [mode]="'view'" [size]="'large'" [required]="true">
         </eq-string>
         <div class="actions">
             <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
@@ -21,21 +15,19 @@
                 [value]="course.subtitle"
                 [mode]="'view'"
                 [size]="'normal'"
-                [required]="true"
-            >
+                [required]="true">
             </eq-string>
             <eq-string
                 [title]="'Course description'"
                 [value]="course.description"
                 [mode]="'view'"
                 [size]="'normal'"
-                [required]="true"
-            >
+                [required]="true">
             </eq-string>
             <div class="additional-information">
                 <span class="last-update">
                     Last modification:
-                    <span> {{ course.modified | date:'shortDate' }}</span>
+                    <span> {{ course.modified | date: 'shortDate' }}</span>
                 </span>
 
                 <div class="author">
@@ -50,12 +42,12 @@
 
                 <div class="learning-time">
                     <mat-icon>schedule</mat-icon>
-                    <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date:'m' }}min</span>
+                    <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
                 </div>
             </div>
         </div>
         <div class="right">
-            <img src="https://placehold.co/600x400/EEE/31343C?text=Image+course" alt="" class="img mat-elevation-z3"/>
+            <img src="https://placehold.co/600x400/EEE/31343C?text=Image+course" alt="" class="img mat-elevation-z3" />
         </div>
     </div>
     <div class="content">

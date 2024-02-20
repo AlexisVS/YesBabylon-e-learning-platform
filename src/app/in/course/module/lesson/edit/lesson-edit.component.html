@@ -14,13 +14,33 @@
                             [mode]="'edit'"
                             [size]="'large'"
                             [required]="true"
-                            (valueChange)="updateLessonField($event,'title')"
-                        >
+                            (valueChange)="updateLessonField($event, 'title')">
                         </eq-string>
                         <div class="actions">
                             <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
                             <button mat-raised-button color="accent">Accent</button>
                             <button mat-raised-button color="warn">Accent</button>
+                        </div>
+                    </div>
+                    <div class="additional-information">
+                        <span class="last-update">
+                            Last modification:
+                            <span> {{ lesson.modified | date: 'shortDate' }}</span>
+                        </span>
+
+                        <div class="author">
+                            <mat-icon>attribution</mat-icon>
+                            <span>Cédric François</span>
+                        </div>
+
+                        <div class="modules-count">
+                            <mat-icon>view_module</mat-icon>
+                            <span>{{ lesson.id }}</span>
+                        </div>
+
+                        <div class="learning-time">
+                            <mat-icon>schedule</mat-icon>
+                            <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
                         </div>
                     </div>
                 </div>
