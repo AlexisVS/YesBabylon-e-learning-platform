@@ -9,6 +9,8 @@ import { CourseModuleListItemModule } from './_components/course-module-list-ite
 import { CourseEditComponent } from './edit/course-edit.component';
 import { CourseEditionPanelModule } from './edit/_components/course-edition-panel/course-edition-panel.module';
 import { CommonModule } from '@angular/common';
+// @ts-ignore
+import { SharedLibModule } from 'sb-shared-lib';
 
 @NgModule({
     imports: [
@@ -20,6 +22,7 @@ import { CommonModule } from '@angular/common';
         MatTabsModule,
         MatInputModule,
         CommonModule,
+        SharedLibModule,
     ],
     declarations: [CourseComponent, CourseEditComponent],
     exports: [],

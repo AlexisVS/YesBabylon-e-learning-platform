@@ -1,33 +1,19 @@
-<link rel="stylesheet" href="lesson.component.scss"/>
+<link rel="stylesheet" href="lesson.component.scss" />
 <div class="lesson" *ngIf="lesson">
     <div class="top-bar">
-        <h2 class="text__course__title">{{ lesson.title }}</h2>
+        <eq-string
+            [title]="'Lesson title'"
+            [value]="lesson.title"
+            [mode]="'view'"
+            [size]="'large'"
+            [required]="true"
+        >
+        </eq-string>
         <div class="actions">
-            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
             <button mat-raised-button color="accent">Accent</button>
             <button mat-raised-button color="warn">Accent</button>
         </div>
     </div>
-    <!--    <div class="details">-->
-    <!--        <p class="subtitle text__course__subtitle">-->
-    <!--            subtitle, Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-    <!--            Debitis dicta in, nobis quam quis ratione reprehenderit sit ut velit-->
-    <!--            veritatis?-->
-    <!--        </p>-->
-    <!--        <p class="description text__course__description">-->
-    <!--            <strong>Description:</strong>-->
-    <!--            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A-->
-    <!--            accusamus amet cupiditate dolore exercitationem expedita facilis,-->
-    <!--            fuga id ipsam ipsum iure maxime 3nobis nostrum officia, optio porro-->
-    <!--            quasi rerum! A.-->
-    <!--        </p>-->
-    <!--    </div>-->
 
-    <!--    <div class="content">-->
-    <!--        <h3 class="title text__course__title">Pages</h3>-->
-
-    <!--        <div class="list">-->
-    <!--            <app-course-module-lesson-page-list-item></app-course-module-lesson-page-list-item>-->
-    <!--        </div>-->
-    <!--    </div>-->
 </div>

@@ -72,22 +72,6 @@
                 "url": "course/1/module/1/lesson/1/edit"
             },
             {
-                "id": "course/1/module/1/lesson/1/page/1",
-                "type": "entry",
-                "label": "page",
-                "description": "Cours de YesBabylon e-learning platform",
-                "icon": "auto_stories",
-                "url": "course/1/module/1/lesson/1/page/1"
-            },
-            {
-                "id": "course/1/module/1/lesson/1/page/1/edit",
-                "type": "entry",
-                "label": "page edit",
-                "description": "Cours de YesBabylon e-learning platform",
-                "icon": "auto_stories",
-                "url": "course/1/module/1/lesson/1/page/1/edit"
-            },
-            {
                 "id": "account",
                 "type": "entry",
                 "label": "Mon compte",

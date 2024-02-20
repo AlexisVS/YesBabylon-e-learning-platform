@@ -19,9 +19,15 @@ export class CourseModuleLessonListItemComponent implements OnInit {
     ) {}
 
     public navigateToLesson(lessonId: string | number): void {
-        this.router.navigate([`lesson/${lessonId}`], {
-            relativeTo: this.route,
-        });
+        if (this.router.url.includes('edit')) {
+            this.router.navigate([`lesson/${lessonId}/edit`], {
+                relativeTo: this.route.parent,
+            });
+        } else {
+            this.router.navigate([`lesson/${lessonId}`], {
+                relativeTo: this.route,
+            });
+        }
     }
 
     ngOnInit(): void {
@@ -30,11 +36,15 @@ export class CourseModuleLessonListItemComponent implements OnInit {
 
     private async getLessons(): Promise<void> {
         const moduleId: number = this.route.snapshot.params?.id;
-        await this.api
-            .collect('qursus\\Chapter', [['module_id', '=', moduleId]], ['title', 'subtitle', 'description'])
-            .then((response: Chapter[]): void => {
-                this.lessons = response;
-            });
+        try {
+            await this.api
+                .collect('qursus\\Chapter', [['module_id', '=', moduleId]], ['title', 'subtitle', 'description'])
+                .then((response: Chapter[]): void => {
+                    this.lessons = response;
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     public trackLessonById(index: number, chapter: Chapter): number {

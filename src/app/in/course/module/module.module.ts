@@ -8,6 +8,8 @@ import { ModuleRoutingModule } from './module-routing.module';
 import { ModuleEditionPanelModule } from './edit/_components/module-edition-panel/module-edition-panel.module';
 import { ModuleEditComponent } from './edit/module-edit.component';
 import { CommonModule } from '@angular/common';
+// @ts-ignore
+import { SharedLibModule } from 'sb-shared-lib';
 
 @NgModule({
     imports: [
@@ -18,6 +20,8 @@ import { CommonModule } from '@angular/common';
         CourseModuleLessonListItemModule,
         ModuleEditionPanelModule,
         CommonModule,
+        SharedLibModule,
+        SharedLibModule,
     ],
     declarations: [ModuleComponent, ModuleEditComponent],
 })

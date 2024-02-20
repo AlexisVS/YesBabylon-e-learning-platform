@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { Pack } from '../../_types/qursus';
@@ -14,6 +14,7 @@ export class CoursesComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private api: ApiService
     ) {}
 
@@ -21,16 +22,22 @@ export class CoursesComponent implements OnInit {
         this.getCourses();
     }
 
-    public navigateToCourse(courseId: number | string): void {
-        this.router.navigate([`/course/${courseId}`]);
+    public navigateToCourse(courseId: string | number): void {
+        this.router.navigate([`course/${courseId}`], {
+            replaceUrl: true,
+        });
     }
 
     public async getCourses(): Promise<void> {
-        await this.api
-            .collect('qursus\\Pack', [], ['title', 'subtitle', 'description'])
-            .then((response: Pack[]): void => {
-                this.courses = response;
-            });
+        try {
+            await this.api
+                .collect('qursus\\Pack', [], ['title', 'subtitle', 'description'])
+                .then((response: Pack[]): void => {
+                    this.courses = response;
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     public trackCourseById(index: number, course: Pack): number {

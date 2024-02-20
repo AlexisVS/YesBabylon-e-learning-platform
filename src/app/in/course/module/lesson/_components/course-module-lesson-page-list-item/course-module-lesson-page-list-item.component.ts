@@ -13,8 +13,14 @@ export class CourseModuleLessonPageListItemComponent {
     ) {}
 
     public navigateToPage(pageId: string | number): void {
-        this.router.navigate([`page/${pageId}`], {
-            relativeTo: this.route,
-        });
+        if (this.router.url.includes('edit')) {
+            this.router.navigate([`page/${pageId}/edit`], {
+                relativeTo: this.route.parent,
+            });
+        } else {
+            this.router.navigate([`page/${pageId}`], {
+                relativeTo: this.route,
+            });
+        }
     }
 }

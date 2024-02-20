@@ -73,14 +73,10 @@ export class AppRootComponent implements OnInit, AfterViewChecked, OnDestroy {
                 this.asideMenu.nativeElement.children[0].children[0] &&
                 this.asideMenu.nativeElement.children[0].children[0].clientWidth
             ) {
-                const asideMenuContentWidth: number =
-                    this.asideMenu.nativeElement.children[0].children[0].clientWidth;
+                const asideMenuContentWidth: number = this.asideMenu.nativeElement.children[0].children[0].clientWidth;
 
                 if (asideMenuContentWidth && asideMenuContentWidth > 0) {
-                    this.elementRef.nativeElement.style.setProperty(
-                        '--aside-menu-width',
-                        `${asideMenuContentWidth}px`
-                    );
+                    this.elementRef.nativeElement.style.setProperty('--aside-menu-width', `${asideMenuContentWidth}px`);
                 }
             } else {
                 this.elementRef.nativeElement.style.setProperty('--aside-menu-width', '250px');

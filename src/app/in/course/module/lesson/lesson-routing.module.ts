@@ -14,17 +14,7 @@ const routes: Routes = [
     },
     {
         path: 'learn',
-        loadChildren: () =>
-            import('./learn/learn.module').then(
-                m => m.AppInCourseModuleLessonLearnModule
-            ),
-    },
-    {
-        path: 'page/:id',
-        loadChildren: () =>
-            import('./page/page.module').then(
-                m => m.AppInCourseModuleLessonPageModule
-            ),
+        loadChildren: () => import('./learn/learn.module').then(m => m.AppInCourseModuleLessonLearnModule),
     },
 ];
 

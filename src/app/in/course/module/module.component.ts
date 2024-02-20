@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Module } from '../../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -13,6 +13,7 @@ export class ModuleComponent implements OnInit {
     public module: Module;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private api: ApiService
     ) {}
@@ -23,10 +24,18 @@ export class ModuleComponent implements OnInit {
 
     private async getModule(): Promise<void> {
         const moduleId: number = this.route.snapshot.params?.id;
-        await this.api
-            .collect('qursus\\Module', [['id', '=', moduleId]], ['title', 'subtitle', 'description'])
-            .then((response: Module[]): void => {
-                this.module = response[0];
-            });
+        try {
+            await this.api
+                .collect('qursus\\Module', [['id', '=', moduleId]], ['title', 'subtitle', 'description'])
+                .then((response: Module[]): void => {
+                    this.module = response[0];
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    public navigateToEditMode(): void {
+        this.router.navigate(['edit'], { relativeTo: this.route });
     }
 }

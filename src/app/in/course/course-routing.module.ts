@@ -14,10 +14,7 @@ const routes: Routes = [
     },
     {
         path: 'module/:id',
-        loadChildren: () =>
-            import('./module/module.module').then(
-                m => m.AppInCourseModuleModule
-            ),
+        loadChildren: () => import('./module/module.module').then(m => m.AppInCourseModuleModule),
     },
 ];
 

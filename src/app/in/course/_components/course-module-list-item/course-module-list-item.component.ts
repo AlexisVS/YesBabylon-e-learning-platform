@@ -23,16 +23,26 @@ export class CourseModuleListItemComponent implements OnInit {
     }
 
     public navigateToModule(moduleId: string | number): void {
-        this.router.navigate([`module/${moduleId}`], {
-            relativeTo: this.route,
-        });
+        if (this.router.url.includes('edit')) {
+            this.router.navigate([`module/${moduleId}/edit`], {
+                relativeTo: this.route.parent,
+            });
+        } else {
+            this.router.navigate([`module/${moduleId}`], {
+                relativeTo: this.route,
+            });
+        }
     }
 
     private async getModules(): Promise<void> {
         const courseId: number = this.route.snapshot.params?.id;
-        await this.api.get('?get=qursus_modules&pack_id=' + courseId).then((response: Module[]): void => {
-            this.modules = response;
-        });
+        try {
+            await this.api.get('?get=qursus_modules&pack_id=' + courseId).then((response: Module[]): void => {
+                this.modules = response;
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     public trackModuleById(index: number, module: Module): number {

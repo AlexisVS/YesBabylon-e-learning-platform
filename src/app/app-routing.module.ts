@@ -16,22 +16,15 @@ const routes: Routes = [
     },
     {
         path: 'account',
-        loadChildren: () =>
-            import('./in/account/account.module').then(
-                m => m.AppInAccountModule
-            ),
+        loadChildren: () => import('./in/account/account.module').then(m => m.AppInAccountModule),
     },
     {
         path: 'courses',
-        loadChildren: () =>
-            import('./in/courses/courses.module').then(
-                m => m.AppInCoursesModule
-            ),
+        loadChildren: () => import('./in/courses/courses.module').then(m => m.AppInCoursesModule),
     },
     {
         path: 'course/:id',
-        loadChildren: () =>
-            import('./in/course/course.module').then(m => m.AppInCourseModule),
+        loadChildren: () => import('./in/course/course.module').then(m => m.AppInCourseModule),
     },
 ];
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pack } from '../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-course',
@@ -13,6 +13,7 @@ export class CourseComponent implements OnInit {
     public course: Pack;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private api: ApiService
     ) {}
@@ -26,10 +27,20 @@ export class CourseComponent implements OnInit {
     }
 
     private async getCourse(courseId: number): Promise<void> {
-        await this.api
-            .collect('qursus\\Pack', [['id', '=', courseId]], ['title', 'subtitle', 'description'])
-            .then((response: Pack[]): void => {
-                this.course = response[0];
-            });
+        try {
+            await this.api
+                .collect('qursus\\Pack', [['id', '=', courseId]], ['title', 'subtitle', 'description'])
+                .then((response: Pack[]): void => {
+                    this.course = response[0];
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    public navigateToEditMode(): void {
+        this.router.navigate(['edit'], { relativeTo: this.route });
+    }
+
+    protected readonly Date = Date;
 }

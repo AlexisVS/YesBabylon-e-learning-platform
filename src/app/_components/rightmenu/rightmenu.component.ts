@@ -4,7 +4,6 @@ import { filter } from 'rxjs/operators';
 import { CourseEditionPanelComponent } from '../../in/course/edit/_components/course-edition-panel/course-edition-panel.component';
 import { ModuleEditionPanelComponent } from '../../in/course/module/edit/_components/module-edition-panel/module-edition-panel.component';
 import { LessonEditionPanelComponent } from '../../in/course/module/lesson/edit/_components/lesson-edition-panel/lesson-edition-panel.component';
-import { PageEditionPanelComponent } from '../../in/course/module/lesson/page/edit/_components/page-edition-panel/page-edition-panel.component';
 
 @Component({
     selector: 'app-rightmenu',
@@ -22,9 +21,6 @@ export class RightmenuComponent implements OnInit {
         },
         lesson: {
             editPanel: LessonEditionPanelComponent,
-        },
-        page: {
-            editPanel: PageEditionPanelComponent,
         },
     };
 

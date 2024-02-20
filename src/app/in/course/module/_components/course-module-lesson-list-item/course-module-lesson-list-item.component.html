@@ -1,16 +1,10 @@
-<ng-container
-    *ngIf="lessons"
->
-    <div *ngFor="let lesson of lessons; trackBy: trackLessonById"
-         class="course-module-lesson-list-item"
-         (click)="navigateToLesson(lesson.id)"
-    >
-        <div class="drag">
-            <mat-icon class="icon">drag_indicator</mat-icon>
-        </div>
+<ng-container *ngIf="lessons">
+    <div
+        *ngFor="let lesson of lessons; trackBy: trackLessonById"
+        class="course-module-lesson-list-item"
+        (click)="navigateToLesson(lesson.id)">
         <div class="content">
             <h4 class="title">{{ lesson.title }}</h4>
-
         </div>
     </div>
 </ng-container>

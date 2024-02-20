@@ -6,12 +6,13 @@
 
     .top-bar {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
 
         .actions {
             display: inline-flex;
             justify-content: space-evenly;
+            padding-bottom: 14px;
 
             > * {
                 margin-left: 12px;
@@ -21,29 +22,29 @@
                 margin-left: 0;
             }
         }
+    }
 
-        .details {
-            width: 100%;
+    .details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .description {
+            margin-top: 1rem;
+        }
+    }
+
+    .content {
+
+        .list {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-            .description {
-                margin-top: 1rem;
-            }
-        }
-
-        .content {
-
-            .list {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                > * {
-                    width: 95%;
-                    flex: 1;
-                    margin: 16px 0;
-                }
+            > * {
+                width: 95%;
+                flex: 1;
             }
         }
     }

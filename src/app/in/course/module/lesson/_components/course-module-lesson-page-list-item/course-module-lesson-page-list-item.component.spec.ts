@@ -13,9 +13,7 @@ describe('CoursePageContentListItemComponent', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(
-            CourseModuleLessonPageListItemComponent
-        );
+        fixture = TestBed.createComponent(CourseModuleLessonPageListItemComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

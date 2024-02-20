@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="course-edit.component.scss"/>
+<link rel="stylesheet" href="course-edit.component.scss" />
 <section class="course-edit" *ngIf="course">
     <div class="view">
         <mat-tab-group>
@@ -8,11 +8,19 @@
                     Content
                 </ng-template>
                 <div class="details">
-
                     <div class="top-bar">
-                        <h2 class="text__course__title">{{ course.title }}</h2>
+                        <eq-string
+                            [title]="'Course title'"
+                            [value]="course.title"
+                            [mode]="'edit'"
+                            [size]="'large'"
+                            [required]="true"
+                            (valueChange)="updateCourseField($event,'title')"
+
+                        >
+                        </eq-string>
                         <div class="actions">
-                            <button mat-raised-button color="primary">Primary</button>
+                            <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
                             <button mat-raised-button color="accent">Accent</button>
                             <button mat-raised-button color="warn">Accent</button>
                         </div>
@@ -20,16 +28,29 @@
 
                     <div class="container">
                         <div class="left">
-                            <p class="subtitle text__course__subtitle">{{ course.subtitle }}</p>
+                            <eq-string
+                                [title]="'Course subtitle'"
+                                [value]="course.subtitle"
+                                [mode]="'edit'"
+                                [size]="'normal'"
+                                [required]="true"
+                                (valueChange)="updateCourseField($event,'subtitle')"
+                            >
+                            </eq-string>
 
-                            <p class="description text__course__description">{{ course.description }}</p>
+                            <eq-string
+                                [title]="'Course description'"
+                                [value]="course.description"
+                                [mode]="'edit'"
+                                [size]="'normal'"
+                                [required]="true"
+                                (valueChange)="updateCourseField($event,'description')"
+                            >
+                            </eq-string>
                         </div>
 
                         <div class="right">
-                            <img
-                                src="https://placehold.co/600x400/EEE/31343C?text=Image+course"
-                                alt=""
-                                class="img"/>
+                            <img src="https://placehold.co/600x400/EEE/31343C?text=Image+course" alt="" class="img mat-elevation-z3" />
                         </div>
                     </div>
                 </div>

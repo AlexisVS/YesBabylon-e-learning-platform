@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Module } from '../../../../_types/qursus';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 
@@ -13,6 +13,7 @@ export class ModuleEditComponent implements OnInit {
     public module: Module;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private api: ApiService
     ) {}
@@ -23,10 +24,30 @@ export class ModuleEditComponent implements OnInit {
 
     private async getModule(): Promise<void> {
         const moduleId: number = this.route.snapshot.params?.id;
-        await this.api
-            .collect('qursus\\Module', [['id', '=', moduleId]], ['title', 'subtitle', 'description'])
-            .then((response: Module[]): void => {
-                this.module = response[0];
+        try {
+            await this.api
+                .collect('qursus\\Module', [['id', '=', moduleId]], ['title', 'subtitle', 'description'])
+                .then((response: Module[]): void => {
+                    this.module = response[0];
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    public async updateModuleField(value: string | null, field: string): Promise<void> {
+        try {
+            await this.api.update('qursus\\Pack', [this.module.id], {
+                [field]: value,
             });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    public navigateToViewMode(): void {
+        const moduleId: number = this.route.snapshot.params?.id;
+
+        this.router.navigate(['module', moduleId], { relativeTo: this.route.parent?.parent });
     }
 }

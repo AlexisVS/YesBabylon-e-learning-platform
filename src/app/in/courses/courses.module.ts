@@ -6,12 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-    imports: [
-        CoursesRoutingModule,
-        MatCardModule,
-        MatButtonModule,
-        CommonModule,
-    ],
+    imports: [CoursesRoutingModule, MatCardModule, MatButtonModule, CommonModule],
     declarations: [CoursesComponent],
 })
 export class AppInCoursesModule {}

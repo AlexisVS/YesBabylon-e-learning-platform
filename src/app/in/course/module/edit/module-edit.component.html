@@ -7,18 +7,33 @@
                     Content
                 </ng-template>
                 <div class="details">
-
                     <div class="top-bar">
-                        <h2 class="text__course__title">{{ module.title }}</h2>
+                        <eq-string
+                            [title]="'Module title'"
+                            [value]="module.title"
+                            [mode]="'edit'"
+                            [size]="'large'"
+                            [required]="true"
+                            (valueChange)="updateModuleField($event,'title')"
+                        >
+                        </eq-string>
                         <div class="actions">
-                            <button mat-raised-button color="primary">Primary</button>
+                            <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
                             <button mat-raised-button color="accent">Accent</button>
                             <button mat-raised-button color="warn">Accent</button>
                         </div>
                     </div>
 
                     <div class="container">
-                        <p class="description text__course__description">{{ module.description }}</p>
+                        <eq-string
+                            [title]="'Module description'"
+                            [value]="module.description"
+                            [mode]="'edit'"
+                            [size]="'normal'"
+                            [required]="true"
+                            (valueChange)="updateModuleField($event,'description')"
+                        >
+                        </eq-string>
                     </div>
                 </div>
 
