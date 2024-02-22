@@ -20,7 +20,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: 16px 16px 0;
+                padding: 32px 32px 0;
                 margin-bottom: 24px;
 
 
@@ -46,6 +46,7 @@
 
                 .container {
                     display: flex;
+                    //noinspection CssInvalidPropertyValue
                     width: -webkit-fill-available;
                     //noinspection CssInvalidPropertyValue
                     width: -moz-available;
@@ -66,14 +67,9 @@
                         font-size: 14px;
                         white-space: nowrap;
 
-                        .last-update {
-                            span {
-                                color: transparentize(black, 0.4);
-                            }
-                        }
-
+                        .last-update,
                         .author,
-                        .modules-count,
+                        .lessons-count,
                         .learning-time {
                             display: flex;
                             flex-direction: column;
@@ -103,7 +99,7 @@
                     align-items: center;
 
                     & > * {
-                        width: 95%;
+                        width: 100%;
                         flex: 1;
                     }
                 }

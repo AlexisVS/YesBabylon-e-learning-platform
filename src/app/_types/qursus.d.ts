@@ -6,6 +6,7 @@ export interface Pack {
     title: string;
     subtitle: string;
     description: string;
+    modules?: String[];
     modified?: string;
     langs_ids?: number[];
     state?: Equal.ModelState;
@@ -20,21 +21,21 @@ export interface Module {
     duration: number;
     modified: string;
     state: Equal.ModelState;
+    chapters?: String[];
     order?: number;
     chapter_count?: number;
     pack_id?: number | Pack;
     link?: string;
-    chapters?: Chapter[];
 }
 
 export interface Chapter {
     id: number;
     identifier: number;
     modified: string;
-    order: number;
     title: string;
     state: Equal.ModelState;
-    pages?: Page[];
+    order?: number;
+    pages?: String[];
 }
 
 export interface Page {

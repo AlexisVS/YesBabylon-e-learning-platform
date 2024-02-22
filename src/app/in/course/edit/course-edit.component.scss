@@ -19,7 +19,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: 16px 16px 0 16px;
+                padding: 32px 32px 0 32px;
                 margin-bottom: 24px;
 
                 .top-bar {
@@ -67,12 +67,7 @@
                             font-size: 14px;
                             white-space: nowrap;
 
-                            .last-update {
-                                span {
-                                    color: transparentize(black, 0.4);
-                                }
-                            }
-
+                            .last-update,
                             .author,
                             .modules-count,
                             .learning-time {
@@ -121,7 +116,7 @@
                     align-items: center;
 
                     > * {
-                        width: 95%;
+                        width: 100%;
                         flex: 1;
                         margin: 16px 0;
                     }

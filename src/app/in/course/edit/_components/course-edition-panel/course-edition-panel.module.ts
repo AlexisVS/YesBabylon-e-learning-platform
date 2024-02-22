@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CourseEditionPanelComponent } from './course-edition-panel.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-    imports: [MatIconModule, MatTabsModule],
+    imports: [MatIconModule, MatTabsModule, CommonModule, DragDropModule],
     declarations: [CourseEditionPanelComponent],
     exports: [CourseEditionPanelComponent],
     providers: [],

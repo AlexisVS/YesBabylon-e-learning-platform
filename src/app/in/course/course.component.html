@@ -1,47 +1,55 @@
-<section class="course" *ngIf="course">
+<section class="course scrollbar-style" *ngIf="course">
     <div class="top-bar">
-        <eq-string [title]="'Course title'" [value]="course.title" [mode]="'view'" [size]="'large'" [required]="true">
+        <eq-string
+            [title]="'Course title'"
+            [hint]="'Title of the course'"
+            [value]="course.title"
+            [mode]="'view'"
+            [size]="'large'"
+            [required]="true">
         </eq-string>
         <div class="actions">
             <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
-            <button mat-raised-button color="accent">Accent</button>
-            <button mat-raised-button color="warn">Accent</button>
         </div>
     </div>
     <div class="details">
         <div class="left">
             <eq-string
                 [title]="'Course subtitle'"
+                [hint]="'Subtitle of the course'"
                 [value]="course.subtitle"
                 [mode]="'view'"
                 [size]="'normal'"
                 [required]="true">
             </eq-string>
-            <eq-string
+            <eq-text
                 [title]="'Course description'"
+                [hint]="'Description of the course'"
                 [value]="course.description"
                 [mode]="'view'"
                 [size]="'normal'"
-                [required]="true">
-            </eq-string>
+                [required]="true"
+                [autoGrow]="true"
+                [minHeight]="88">
+            </eq-text>
             <div class="additional-information">
-                <span class="last-update">
-                    Last modification:
+                <span class="last-update" title="Last modification date">
+                    <mat-icon>schedule</mat-icon>
                     <span> {{ course.modified | date: 'shortDate' }}</span>
                 </span>
 
-                <div class="author">
-                    <mat-icon>attribution</mat-icon>
+                <div class="author" title="Author">
+                    <mat-icon>person</mat-icon>
                     <span>Cédric François</span>
                 </div>
 
-                <div class="modules-count">
+                <div class="modules-count" title="Modules count">
                     <mat-icon>view_module</mat-icon>
-                    <span>{{ course.id }}</span>
+                    <span>{{ course.modules?.length }}</span>
                 </div>
 
-                <div class="learning-time">
-                    <mat-icon>schedule</mat-icon>
+                <div class="learning-time" title="Learning time">
+                    <mat-icon>timer</mat-icon>
                     <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
                 </div>
             </div>
@@ -51,7 +59,7 @@
         </div>
     </div>
     <div class="content">
-        <h3 class="title text__course__title">Modules</h3>
+        <h3 class="title text__course__title">Course modules</h3>
 
         <div class="list">
             <app-course-module-list-item></app-course-module-list-item>

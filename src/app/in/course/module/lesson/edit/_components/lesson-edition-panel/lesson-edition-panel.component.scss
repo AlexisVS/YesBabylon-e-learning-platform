@@ -4,7 +4,7 @@
 
     .edit-panel {
         padding: 16px 16px 0 8px;
-        background-color: #bbdefb;
-        min-height: calc(100svh - 103px);
+        height: calc(100svh - 103px);
+overflow-x: hidden;
     }
 }

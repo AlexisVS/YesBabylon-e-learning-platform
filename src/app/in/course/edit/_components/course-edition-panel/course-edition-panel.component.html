@@ -1,10 +1,10 @@
-<mat-tab-group [backgroundColor]="'primary'">
+<mat-tab-group>
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon>settings</mat-icon>
             Parameters
         </ng-template>
-        <div class="edit-panel">Hello</div>
+        <div class="edit-panel scrollbar-style">Hello</div>
     </mat-tab>
 
     <mat-tab>
@@ -12,7 +12,19 @@
             <mat-icon>account_tree</mat-icon>
             Tree
         </ng-template>
-        <div class="edit-panel">World</div>
+        <div class="edit-panel scrollbar-style">
+            <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="drop-list">
+                <div cdkDrag class="item mat-elevation-z1" *ngFor="let module of modules; trackBy: trackModuleById">
+                    <div class="drag">
+                        <mat-icon class="icon">drag_indicator</mat-icon>
+                    </div>
+                    <div class="content">
+                        <h4 class="title">{{ module.title }}</h4>
+                        <p class="description">{{ module.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </mat-tab>
 
     <mat-tab>
@@ -20,6 +32,6 @@
             <mat-icon>public</mat-icon>
             SEO
         </ng-template>
-        <div class="edit-panel">!!!</div>
+        <div class="edit-panel scrollbar-style">!!!</div>
     </mat-tab>
 </mat-tab-group>

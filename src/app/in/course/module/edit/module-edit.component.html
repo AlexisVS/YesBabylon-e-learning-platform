@@ -1,70 +1,64 @@
-<section class="course-edit" *ngIf="module">
+<section class="course-edit scrollbar-style" *ngIf="module">
     <div class="view">
-        <mat-tab-group>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon>preview</mat-icon>
-                    Content
-                </ng-template>
-                <div class="details">
-                    <div class="top-bar">
-                        <eq-string
-                            [title]="'Module title'"
-                            [value]="module.title"
-                            [mode]="'edit'"
-                            [size]="'large'"
-                            [required]="true"
-                            (valueChange)="updateModuleField($event, 'title')">
-                        </eq-string>
-                        <div class="actions">
-                            <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
-                            <button mat-raised-button color="accent">Accent</button>
-                            <button mat-raised-button color="warn">Accent</button>
-                        </div>
+        <div class="details">
+            <div class="top-bar">
+                <eq-string
+                    [title]="'Module title'"
+                    [hint]="'Title of the module'"
+                    [value]="module.title"
+                    [mode]="'edit'"
+                    [size]="'large'"
+                    [required]="true"
+                    (valueChange)="updateModuleField($event, 'title')">
+                </eq-string>
+                <div class="actions">
+                    <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <eq-text
+                    [title]="'Module description'"
+                    [hint]="'Description of the module'"
+                    [value]="module.description"
+                    [mode]="'edit'"
+                    [size]="'normal'"
+                    [required]="true"
+                    (valueChange)="updateModuleField($event, 'description')"
+                    [autoGrow]="true"
+                    [minHeight]="88">
+                </eq-text>
+
+                <div class="additional-information">
+                    <span class="last-update" title="Last modification date">
+                        <mat-icon>schedule</mat-icon>
+                        <span> {{ module.modified | date: 'shortDate' }}</span>
+                    </span>
+
+                    <div class="author" title="Author">
+                        <mat-icon>person</mat-icon>
+                        <span>Cédric François</span>
                     </div>
 
-                    <div class="container">
-                        <eq-string
-                            [title]="'Module description'"
-                            [value]="module.description"
-                            [mode]="'edit'"
-                            [size]="'normal'"
-                            [required]="true"
-                            (valueChange)="updateModuleField($event, 'description')">
-                        </eq-string>
+                    <div class="lessons-count" title="Lessons count">
+                        <mat-icon>bookmark</mat-icon>
+                        <span>{{ module.chapters?.length }}</span>
+                    </div>
 
-                        <div class="additional-information">
-                            <span class="last-update">
-                                Last modification:
-                                <span> {{ module.modified | date: 'shortDate' }}</span>
-                            </span>
-
-                            <div class="author">
-                                <mat-icon>attribution</mat-icon>
-                                <span>Cédric François</span>
-                            </div>
-
-                            <div class="modules-count">
-                                <mat-icon>view_module</mat-icon>
-                                <span>{{ module.id }}</span>
-                            </div>
-
-                            <div class="learning-time">
-                                <mat-icon>schedule</mat-icon>
-                                <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
-                            </div>
-                        </div>
+                    <div class="learning-time" title="Learning time">
+                        <mat-icon>timer</mat-icon>
+                        <span>{{ formatDuration(module.duration) }}</span>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="content">
-                    <h3 class="title text__course__title">Leçons</h3>
+        <div class="content">
+            <h3 class="title text__course__title">Module lessons</h3>
 
-                    <div class="list">
-                        <app-course-module-lesson-list-item></app-course-module-lesson-list-item>
-                    </div>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
+            <div class="list">
+                <app-course-module-lesson-list-item></app-course-module-lesson-list-item>
+            </div>
+        </div>
     </div>
 </section>

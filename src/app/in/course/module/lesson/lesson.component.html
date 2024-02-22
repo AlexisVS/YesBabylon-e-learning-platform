@@ -1,33 +1,36 @@
-<link rel="stylesheet" href="lesson.component.scss" />
-<div class="lesson" *ngIf="lesson">
+<div class="lesson scrollbar-style" *ngIf="lesson">
     <div class="top-bar">
-        <eq-string [title]="'Lesson title'" [value]="lesson.title" [mode]="'view'" [size]="'large'" [required]="true">
+        <eq-string
+            [title]="'Lesson title'"
+            [hint]="'Title of the lesson'"
+            [value]="lesson.title"
+            [mode]="'view'"
+            [size]="'large'"
+            [required]="true">
         </eq-string>
         <div class="actions">
             <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
-            <button mat-raised-button color="accent">Accent</button>
-            <button mat-raised-button color="warn">Accent</button>
         </div>
     </div>
 
     <div class="additional-information">
-        <span class="last-update">
-            Last modification:
+        <span class="last-update" title="Last modification date">
+            <mat-icon>schedule</mat-icon>
             <span> {{ lesson.modified | date: 'shortDate' }}</span>
         </span>
 
-        <div class="author">
-            <mat-icon>attribution</mat-icon>
+        <div class="author" title="Author">
+            <mat-icon>person</mat-icon>
             <span>Cédric François</span>
         </div>
 
-        <div class="modules-count">
-            <mat-icon>view_module</mat-icon>
-            <span>{{ lesson.id }}</span>
+        <div class="pages-count" title="Pages count">
+            <mat-icon>auto_stories</mat-icon>
+            <span>{{ lesson.pages?.length }}</span>
         </div>
 
-        <div class="learning-time">
-            <mat-icon>schedule</mat-icon>
+        <div class="learning-time" title="Learning time">
+            <mat-icon>timer</mat-icon>
             <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
         </div>
     </div>

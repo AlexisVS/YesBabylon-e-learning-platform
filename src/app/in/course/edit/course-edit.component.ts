@@ -29,7 +29,11 @@ export class CourseEditComponent implements OnInit {
     private async getCourse(courseId: number): Promise<void> {
         try {
             await this.api
-                .collect('qursus\\Pack', [['id', '=', courseId]], ['title', 'subtitle', 'description'])
+                .collect(
+                    'qursus\\Pack',
+                    [['id', '=', courseId]],
+                    ['title', 'subtitle', 'description', 'chapter_count', 'page_count', 'chapters_ids', 'modules']
+                )
                 .then((response: Pack[]): void => {
                     this.course = response[0];
                 });

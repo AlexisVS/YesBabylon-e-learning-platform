@@ -38,7 +38,13 @@ export class CourseModuleListItemComponent implements OnInit {
         const courseId: number = this.route.snapshot.params?.id;
         try {
             await this.api.get('?get=qursus_modules&pack_id=' + courseId).then((response: Module[]): void => {
-                this.modules = response;
+                this.modules = response.sort((a: Module, b: Module): number => {
+                    if (a.order && b.order) {
+                        return a.order - b.order;
+                    }
+
+                    return a.id - b.id;
+                });
             });
         } catch (error) {
             console.error(error);

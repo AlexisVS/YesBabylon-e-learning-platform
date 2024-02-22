@@ -26,7 +26,7 @@ export class LessonEditComponent implements OnInit {
         const moduleId: number = this.route.snapshot.params?.id;
         try {
             await this.api
-                .collect('qursus\\Chapter', [['id', '=', moduleId]], ['title'])
+                .collect('qursus\\Chapter', [['id', '=', moduleId]], ['title', 'page_count', 'pages', 'order'])
                 .then((response: Chapter[]): void => {
                     this.lesson = response[0];
                 });

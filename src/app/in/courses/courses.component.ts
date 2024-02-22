@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -10,6 +10,7 @@ import { Pack } from '../../_types/qursus';
     styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
+    @HostBinding('class') public readonly classes = 'scrollbar-style';
     public courses: Pack[];
 
     constructor(

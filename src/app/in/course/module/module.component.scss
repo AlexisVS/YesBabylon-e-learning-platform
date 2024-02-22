@@ -1,7 +1,7 @@
 .module {
     max-height: calc(100svh - 55px - 20px);
     height: 100%;
-    padding: 16px;
+    padding: 32px;
     overflow-y: auto;
 
     .top-bar {
@@ -44,14 +44,9 @@
             font-size: 14px;
             white-space: nowrap;
 
-            .last-update {
-                span {
-                    color: transparentize(black, 0.4);
-                }
-            }
-
+            .last-update,
             .author,
-            .modules-count,
+            .lessons-count,
             .learning-time {
                 display: flex;
                 flex-direction: column;
@@ -75,7 +70,7 @@
             justify-content: center;
 
             > * {
-                width: 95%;
+                width: 100%;
                 flex: 1;
             }
         }

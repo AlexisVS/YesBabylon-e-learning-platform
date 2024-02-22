@@ -26,7 +26,11 @@ export class ModuleComponent implements OnInit {
         const moduleId: number = this.route.snapshot.params?.id;
         try {
             await this.api
-                .collect('qursus\\Module', [['id', '=', moduleId]], ['title', 'subtitle', 'description'])
+                .collect(
+                    'qursus\\Module',
+                    [['id', '=', moduleId]],
+                    ['title', 'subtitle', 'description', 'page_count', 'chapter_count', 'chapters', 'duration']
+                )
                 .then((response: Module[]): void => {
                     this.module = response[0];
                 });
@@ -37,5 +41,18 @@ export class ModuleComponent implements OnInit {
 
     public navigateToEditMode(): void {
         this.router.navigate(['edit'], { relativeTo: this.route });
+    }
+
+    public formatDuration(duration: number): string {
+        const hours: number = Math.floor(duration / 60);
+        const minutes: number = duration % 60;
+
+        if (hours === 0) {
+            return minutes + 'min';
+        } else if (minutes === 0) {
+            return hours + 'h';
+        } else {
+            return hours + 'h ' + (minutes < 10 ? '0' : '') + minutes + 'min';
+        }
     }
 }
