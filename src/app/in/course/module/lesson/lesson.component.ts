@@ -3,6 +3,7 @@ import { Chapter } from '../../../../_types/qursus';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
+import { User } from '../../../../_types/equal';
 
 @Component({
     selector: 'app-lesson',
@@ -11,6 +12,7 @@ import { ApiService } from 'sb-shared-lib';
 })
 export class LessonComponent implements OnInit {
     public lesson: Chapter;
+    public author: string;
 
     constructor(
         private router: Router,
@@ -19,14 +21,23 @@ export class LessonComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.getLesson();
+        this.fetchApiResources();
+    }
+
+    private async fetchApiResources(): Promise<void> {
+        await this.getLesson();
+        await this.getAuthor();
     }
 
     private async getLesson(): Promise<void> {
         const moduleId: number = this.route.snapshot.params?.id;
         try {
             await this.api
-                .collect('qursus\\Chapter', [['id', '=', moduleId]], ['title', 'page_count', 'pages', 'order'])
+                .collect(
+                    'qursus\\Chapter',
+                    [['id', '=', moduleId]],
+                    ['title', 'page_count', 'pages', 'order', 'creator']
+                )
                 .then((response: Chapter[]): void => {
                     this.lesson = response[0];
                 });
@@ -37,5 +48,17 @@ export class LessonComponent implements OnInit {
 
     public navigateToEditMode(): void {
         this.router.navigate(['edit'], { relativeTo: this.route });
+    }
+
+    private async getAuthor(): Promise<void> {
+        try {
+            this.api
+                .collect('core\\User', ['id', '=', this.lesson.creator], ['firstname', 'lastname'])
+                .then((response: User[]): void => {
+                    this.author = response[0].firstname + ' ' + response[0].lastname;
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

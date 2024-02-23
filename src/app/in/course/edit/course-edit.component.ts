@@ -3,6 +3,7 @@ import { Pack } from '../../../_types/qursus';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
+import { User } from '../../../_types/equal';
 
 @Component({
     selector: 'app-course-edit',
@@ -11,6 +12,7 @@ import { ApiService } from 'sb-shared-lib';
 })
 export class CourseEditComponent implements OnInit {
     public course: Pack;
+    public author: string;
 
     constructor(
         private router: Router,
@@ -19,10 +21,15 @@ export class CourseEditComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.fetchApiResources();
+    }
+
+    private async fetchApiResources(): Promise<void> {
         const courseId: number = this.route.snapshot.params?.id;
 
         if (courseId) {
-            this.getCourse(courseId);
+            await this.getCourse(courseId);
+            await this.getAuthor();
         }
     }
 
@@ -32,7 +39,16 @@ export class CourseEditComponent implements OnInit {
                 .collect(
                     'qursus\\Pack',
                     [['id', '=', courseId]],
-                    ['title', 'subtitle', 'description', 'chapter_count', 'page_count', 'chapters_ids', 'modules']
+                    [
+                        'title',
+                        'subtitle',
+                        'description',
+                        'chapter_count',
+                        'page_count',
+                        'chapters_ids',
+                        'modules',
+                        'creator',
+                    ]
                 )
                 .then((response: Pack[]): void => {
                     this.course = response[0];
@@ -56,5 +72,17 @@ export class CourseEditComponent implements OnInit {
         const courseId: number = this.route.snapshot.params?.id;
 
         this.router.navigate(['course', courseId], { relativeTo: this.route.parent?.parent });
+    }
+
+    private async getAuthor(): Promise<void> {
+        try {
+            this.api
+                .collect('core\\User', ['id', '=', this.course.creator], ['firstname', 'lastname'])
+                .then((response: User[]): void => {
+                    this.author = response[0].firstname + ' ' + response[0].lastname;
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

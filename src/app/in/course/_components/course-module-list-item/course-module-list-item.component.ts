@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Module } from '../../../../_types/qursus';
+import { Chapter, Module } from '../../../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-course-module-list-item',
@@ -53,5 +54,25 @@ export class CourseModuleListItemComponent implements OnInit {
 
     public trackModuleById(index: number, module: Module): number {
         return module.id;
+    }
+
+    public onDrop(event: CdkDragDrop<Module[]>): void {
+        moveItemInArray(this.modules, event.previousIndex, event.currentIndex);
+
+        this.modules.forEach((module: Module, index: number): void => {
+            module.order = index + 1;
+        });
+
+        this.modules.forEach((module: Module): void => {
+            this.updateModuleOrder(module);
+        });
+    }
+
+    private updateModuleOrder(module: Module): void {
+        try {
+            this.api.update('qursus\\Module', [module.id], { order: module.order });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

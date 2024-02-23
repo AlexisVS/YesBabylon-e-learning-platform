@@ -87,18 +87,8 @@
         }
 
         .content {
-
-
-            .list {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                > * {
-                    width: 100%;
-                    flex: 1;
-                    margin: 16px 0;
-                }
+            .title {
+                margin-bottom: 16px;
             }
         }
     }

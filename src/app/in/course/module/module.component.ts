@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Module } from '../../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
+import { User } from '../../../_types/equal';
 
 @Component({
     selector: 'app-module',
@@ -11,6 +12,7 @@ import { ApiService } from 'sb-shared-lib';
 })
 export class ModuleComponent implements OnInit {
     public module: Module;
+    public author: string;
 
     constructor(
         private router: Router,
@@ -19,7 +21,12 @@ export class ModuleComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.getModule();
+        this.fetchApiResources();
+    }
+
+    private async fetchApiResources(): Promise<void> {
+        await this.getModule();
+        await this.getAuthor();
     }
 
     private async getModule(): Promise<void> {
@@ -29,7 +36,16 @@ export class ModuleComponent implements OnInit {
                 .collect(
                     'qursus\\Module',
                     [['id', '=', moduleId]],
-                    ['title', 'subtitle', 'description', 'page_count', 'chapter_count', 'chapters', 'duration']
+                    [
+                        'title',
+                        'subtitle',
+                        'description',
+                        'page_count',
+                        'chapter_count',
+                        'chapters',
+                        'duration',
+                        'creator',
+                    ]
                 )
                 .then((response: Module[]): void => {
                     this.module = response[0];
@@ -53,6 +69,18 @@ export class ModuleComponent implements OnInit {
             return hours + 'h';
         } else {
             return hours + 'h ' + (minutes < 10 ? '0' : '') + minutes + 'min';
+        }
+    }
+
+    private async getAuthor(): Promise<void> {
+        try {
+            this.api
+                .collect('core\\User', ['id', '=', this.module.creator], ['firstname', 'lastname'])
+                .then((response: User[]): void => {
+                    this.author = response[0].firstname + ' ' + response[0].lastname;
+                });
+        } catch (error) {
+            console.error(error);
         }
     }
 }

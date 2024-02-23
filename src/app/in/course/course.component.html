@@ -40,7 +40,7 @@
 
                 <div class="author" title="Author">
                     <mat-icon>person</mat-icon>
-                    <span>Cédric François</span>
+                    <span>{{ author }}</span>
                 </div>
 
                 <div class="modules-count" title="Modules count">
@@ -61,8 +61,6 @@
     <div class="content">
         <h3 class="title text__course__title">Course modules</h3>
 
-        <div class="list">
-            <app-course-module-list-item></app-course-module-list-item>
-        </div>
+        <app-course-module-list-item></app-course-module-list-item>
     </div>
 </section>
