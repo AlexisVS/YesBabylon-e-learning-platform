@@ -1,6 +1,6 @@
 import * as Equal from './equal';
 
-export interface Pack {
+export interface Course {
     id: number;
     name: string;
     title: string;
@@ -22,11 +22,12 @@ export interface Module {
     duration: number;
     modified: string;
     state: Equal.ModelState;
+    lessons?: Chapter[];
     creator?: number;
     chapters?: String[];
     order?: number;
     chapter_count?: number;
-    pack_id?: number | Pack;
+    course_id?: number | Course;
     link?: string;
 }
 
@@ -35,6 +36,7 @@ export interface Chapter {
     identifier: number;
     modified: string;
     title: string;
+    description: string;
     state: Equal.ModelState;
     creator?: number;
     order?: number;

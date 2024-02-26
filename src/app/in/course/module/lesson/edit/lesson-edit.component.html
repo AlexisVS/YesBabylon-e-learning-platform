@@ -15,6 +15,18 @@
                     <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
                 </div>
             </div>
+            <eq-text
+                [title]="'Lesson description'"
+                [hint]="'Description of the lesson'"
+                [value]="lesson.description"
+                [mode]="'edit'"
+                [size]="'normal'"
+                [required]="true"
+                [autoGrow]="true"
+                [minHeight]="88"
+                (valueChange)="updateLessonField($event, 'description')">
+                >
+            </eq-text>
             <div class="additional-information">
                 <span class="last-update" title="Last modification date">
                     <mat-icon>schedule</mat-icon>

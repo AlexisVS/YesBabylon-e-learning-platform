@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -32,7 +32,7 @@ declare global {
     templateUrl: './app.root.component.html',
     styleUrls: ['./app.root.component.scss'],
 })
-export class AppRootComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class AppRootComponent implements OnInit, OnDestroy {
     public show_side_menu: boolean = false;
     public show_side_bar: boolean = true;
 
@@ -64,24 +64,6 @@ export class AppRootComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     ngOnDestroy(): void {
         clearTimeout(this.timeout);
-    }
-
-    ngAfterViewChecked(): void {
-        if (this.asideMenu.nativeElement instanceof HTMLDivElement) {
-            if (
-                this.asideMenu.nativeElement.children[0] &&
-                this.asideMenu.nativeElement.children[0].children[0] &&
-                this.asideMenu.nativeElement.children[0].children[0].clientWidth
-            ) {
-                const asideMenuContentWidth: number = this.asideMenu.nativeElement.children[0].children[0].clientWidth;
-
-                if (asideMenuContentWidth && asideMenuContentWidth > 0) {
-                    this.elementRef.nativeElement.style.setProperty('--aside-menu-width', `${asideMenuContentWidth}px`);
-                }
-            } else {
-                this.elementRef.nativeElement.style.setProperty('--aside-menu-width', '250px');
-            }
-        }
     }
 
     public async ngOnInit() {

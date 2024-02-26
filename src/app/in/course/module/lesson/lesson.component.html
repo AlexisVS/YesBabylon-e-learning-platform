@@ -1,37 +1,49 @@
 <div class="lesson scrollbar-style" *ngIf="lesson">
-    <div class="top-bar">
-        <eq-string
-            [title]="'Lesson title'"
-            [hint]="'Title of the lesson'"
-            [value]="lesson.title"
+    <div class="details">
+        <div class="top-bar">
+            <eq-string
+                [title]="'Lesson title'"
+                [hint]="'Title of the lesson'"
+                [value]="lesson.title"
+                [mode]="'view'"
+                [size]="'large'"
+                [required]="true">
+            </eq-string>
+            <div class="actions">
+                <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
+            </div>
+        </div>
+        <eq-text
+            [title]="'Lesson description'"
+            [hint]="'Description of the lesson'"
+            [value]="lesson.description"
             [mode]="'view'"
-            [size]="'large'"
-            [required]="true">
-        </eq-string>
-        <div class="actions">
-            <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
-        </div>
-    </div>
+            [size]="'normal'"
+            [required]="true"
+            [autoGrow]="true"
+            [minHeight]="88">
+        </eq-text>
 
-    <div class="additional-information">
-        <span class="last-update" title="Last modification date">
-            <mat-icon>schedule</mat-icon>
-            <span> {{ lesson.modified | date: 'shortDate' }}</span>
-        </span>
+        <div class="additional-information">
+            <span class="last-update" title="Last modification date">
+                <mat-icon>schedule</mat-icon>
+                <span> {{ lesson.modified | date: 'shortDate' }}</span>
+            </span>
 
-        <div class="author" title="Author">
-            <mat-icon>person</mat-icon>
-            <span>{{ author }}</span>
-        </div>
+            <div class="author" title="Author">
+                <mat-icon>person</mat-icon>
+                <span>{{ author }}</span>
+            </div>
 
-        <div class="pages-count" title="Pages count">
-            <mat-icon>auto_stories</mat-icon>
-            <span>{{ lesson.pages?.length }}</span>
-        </div>
+            <div class="pages-count" title="Pages count">
+                <mat-icon>auto_stories</mat-icon>
+                <span>{{ lesson.pages?.length }}</span>
+            </div>
 
-        <div class="learning-time" title="Learning time">
-            <mat-icon>timer</mat-icon>
-            <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
+            <div class="learning-time" title="Learning time">
+                <mat-icon>timer</mat-icon>
+                <span>{{ +(90 / 60).toFixed(0) - 1 }}h {{ 90 * (1000 * 60) | date: 'm' }}min</span>
+            </div>
         </div>
     </div>
 </div>

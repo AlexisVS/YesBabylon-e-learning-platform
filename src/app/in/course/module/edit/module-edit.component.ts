@@ -57,7 +57,7 @@ export class ModuleEditComponent implements OnInit {
 
     public async updateModuleField(value: string | null, field: string): Promise<void> {
         try {
-            await this.api.update('qursus\\Pack', [this.module.id], {
+            await this.api.update('qursus\\Course', [this.module.id], {
                 [field]: value,
             });
         } catch (error) {

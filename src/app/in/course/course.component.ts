@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Pack } from '../../_types/qursus';
+import { Course } from '../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { User } from '../../_types/equal';
     styleUrls: ['./course.component.scss'],
 })
 export class CourseComponent implements OnInit {
-    public course: Pack;
+    public course: Course;
     public author: string;
 
     constructor(
@@ -37,7 +37,7 @@ export class CourseComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Pack',
+                    'qursus\\Course',
                     [['id', '=', courseId]],
                     [
                         'title',
@@ -50,7 +50,7 @@ export class CourseComponent implements OnInit {
                         'creator',
                     ]
                 )
-                .then((response: Pack[]): void => {
+                .then((response: Course[]): void => {
                     this.course = response[0];
                 });
         } catch (error) {

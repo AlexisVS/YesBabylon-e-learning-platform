@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pack } from '../../../_types/qursus';
+import { Course } from '../../../_types/qursus';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -11,7 +11,7 @@ import { User } from '../../../_types/equal';
     styleUrls: ['./course-edit.component.scss'],
 })
 export class CourseEditComponent implements OnInit {
-    public course: Pack;
+    public course: Course;
     public author: string;
 
     constructor(
@@ -37,7 +37,7 @@ export class CourseEditComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Pack',
+                    'qursus\\Course',
                     [['id', '=', courseId]],
                     [
                         'title',
@@ -50,7 +50,7 @@ export class CourseEditComponent implements OnInit {
                         'creator',
                     ]
                 )
-                .then((response: Pack[]): void => {
+                .then((response: Course[]): void => {
                     this.course = response[0];
                 });
         } catch (error) {
@@ -60,7 +60,7 @@ export class CourseEditComponent implements OnInit {
 
     public async updateCourseField(value: string | null, field: string): Promise<void> {
         try {
-            await this.api.update('qursus\\Pack', [this.course.id], {
+            await this.api.update('qursus\\Course', [this.course.id], {
                 [field]: value,
             });
         } catch (error) {

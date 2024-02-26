@@ -1,26 +1,25 @@
 :host {
     .course-edit {
-        max-height: calc(100svh - 55px - 20px);
-        height: 100%;
         overflow-y: auto;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
+        height: 100%;
+        max-height: calc(100svh - 55px - 20px);
+
         .view {
             display: flex;
             flex-direction: column;
-            //noinspection CssInvalidPropertyValue
-            width: -webkit-fill-available;
-            //noinspection CssInvalidPropertyValue
-            width: -moz-available;
+            width: stretch;
 
             .details {
-                width: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: 32px 32px 0 32px;
+
+                width: 100%;
                 margin-bottom: 24px;
+                padding: 32px 32px 0;
 
                 .top-bar {
                     display: flex;
@@ -47,25 +46,29 @@
                     flex-direction: row;
 
                     .left {
-                        max-width: 70ch;
-                        width: 100%;
                         display: flex;
                         flex-direction: column;
+
+                        width: 100%;
+                        max-width: 70ch;
                         margin-right: 0.5rem;
 
                         .additional-information {
-                            width: calc(100% - 80px);
                             display: flex;
+                            gap: 16px;
                             align-items: flex-end;
                             justify-content: space-evenly;
-                            gap: 16px;
+
+                            width: calc(100% - 80px);
                             padding: 16px;
-                            border-radius: 8px;
-                            background-color: transparentize(black, 0.96);
-                            color: transparentize(black, 0.6);
-                            font-weight: 480;
+
                             font-size: 14px;
+                            font-weight: 480;
+                            color: transparentize(black, 0.6);
                             white-space: nowrap;
+
+                            background-color: transparentize(black, 0.96);
+                            border-radius: 8px;
 
                             .last-update,
                             .author,
@@ -73,9 +76,9 @@
                             .learning-time {
                                 display: flex;
                                 flex-direction: column;
+                                gap: 4px;
                                 align-items: center;
                                 justify-content: center;
-                                gap: 4px;
 
                                 span {
                                     color: transparentize(black, 0.4);
@@ -85,16 +88,18 @@
                     }
 
                     .right {
-                        min-width: 150px;
                         display: flex;
                         align-items: baseline;
                         justify-content: center;
+
+                        min-width: 150px;
                         margin: 0 auto;
 
                         .img {
-                            height: auto;
                             width: 100%;
                             max-width: 350px;
+                            height: auto;
+
                             object-fit: contain;
                             border-radius: 8px;
                         }

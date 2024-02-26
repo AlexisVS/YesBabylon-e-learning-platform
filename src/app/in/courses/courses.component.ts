@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
-import { Pack } from '../../_types/qursus';
+import { Course } from '../../_types/qursus';
 
 @Component({
     selector: 'app-courses',
@@ -11,7 +11,7 @@ import { Pack } from '../../_types/qursus';
 })
 export class CoursesComponent implements OnInit {
     @HostBinding('class') public readonly classes = 'scrollbar-style';
-    public courses: Pack[];
+    public courses: Course[];
 
     constructor(
         private router: Router,
@@ -32,8 +32,8 @@ export class CoursesComponent implements OnInit {
     public async getCourses(): Promise<void> {
         try {
             await this.api
-                .collect('qursus\\Pack', [], ['title', 'subtitle', 'description'])
-                .then((response: Pack[]): void => {
+                .collect('qursus\\Course', [], ['title', 'subtitle', 'description'])
+                .then((response: Course[]): void => {
                     this.courses = response;
                 });
         } catch (error) {
@@ -41,7 +41,7 @@ export class CoursesComponent implements OnInit {
         }
     }
 
-    public trackCourseById(index: number, course: Pack): number {
+    public trackCourseById(index: number, course: Course): number {
         return course.id;
     }
 }

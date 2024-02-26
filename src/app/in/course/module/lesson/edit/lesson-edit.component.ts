@@ -36,7 +36,7 @@ export class LessonEditComponent implements OnInit {
                 .collect(
                     'qursus\\Chapter',
                     [['id', '=', moduleId]],
-                    ['title', 'page_count', 'pages', 'order', 'creator']
+                    ['title', 'page_count', 'pages', 'order', 'creator', 'description']
                 )
                 .then((response: Chapter[]): void => {
                     this.lesson = response[0];
@@ -48,7 +48,7 @@ export class LessonEditComponent implements OnInit {
 
     public async updateLessonField(value: string | null, field: string): Promise<void> {
         try {
-            await this.api.update('qursus\\Pack', [this.lesson.id], {
+            await this.api.update('qursus\\Course', [this.lesson.id], {
                 [field]: value,
             });
         } catch (error) {

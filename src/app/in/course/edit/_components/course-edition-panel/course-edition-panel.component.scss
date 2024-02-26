@@ -4,64 +4,9 @@
     width: max-content;
 
     .edit-panel {
-        padding: 16px 16px 0 8px;
+        width: 450px;
         height: calc(100svh - 103px);
-        overflow-x: hidden;
-        max-width: 600px;
+        padding: 16px 16px 0 8px;
 
-        .drop-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-
-            .item {
-                width: 100%;
-                height: min-content;
-                border: 1px solid black;
-                display: flex;
-                flex-direction: row;
-                padding: 4px 8px 4px 4px;
-                border-radius: 5px;
-                margin-bottom: 8px;
-                cursor: grab;
-
-                > *|* {
-                    pointer-events: none;
-                    user-select: none;
-                }
-
-                .drag {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 40px;
-
-                    .icon {
-                        width: auto;
-                    }
-                }
-
-                .content {
-                    padding-left: 5px;
-
-                    .title {
-                        font-size: 17px;
-                        font-weight: 600;
-                        color: #424242;
-                    }
-
-                    .description {
-                        font-size: 14px;
-                        display: -webkit-box;
-                        -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 2;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                }
-            }
-        }
     }
 }

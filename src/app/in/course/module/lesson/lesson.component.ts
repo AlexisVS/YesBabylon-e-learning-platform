@@ -36,11 +36,12 @@ export class LessonComponent implements OnInit {
                 .collect(
                     'qursus\\Chapter',
                     [['id', '=', moduleId]],
-                    ['title', 'page_count', 'pages', 'order', 'creator']
+                    ['title', 'page_count', 'pages', 'order', 'creator', 'description']
                 )
                 .then((response: Chapter[]): void => {
                     this.lesson = response[0];
                 });
+            console.log(this.lesson);
         } catch (error) {
             console.error(error);
         }

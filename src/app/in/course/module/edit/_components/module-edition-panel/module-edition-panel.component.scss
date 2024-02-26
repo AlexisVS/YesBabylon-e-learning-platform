@@ -3,10 +3,9 @@
     width: max-content;
 
     .edit-panel {
-        padding: 16px 16px 0 8px;
+        width: 450px;
         height: calc(100svh - 103px);
-overflow-x: hidden;
-        max-width: 600px;
+        padding: 16px 16px 0 8px;
 
         .drop-list {
             display: flex;
@@ -14,15 +13,18 @@ overflow-x: hidden;
             gap: 8px;
 
             .item {
-                width: 100%;
-                height: min-content;
-                border: 1px solid black;
+                cursor: grab;
+
                 display: flex;
                 flex-direction: row;
-                padding: 4px 8px 4px 4px;
-                border-radius: 5px;
+
+                width: 100%;
+                height: min-content;
                 margin-bottom: 8px;
-                cursor: grab;
+                padding: 4px 8px 4px 4px;
+
+                border: 1px solid black;
+                border-radius: 5px;
 
                 > *|* {
                     pointer-events: none;
@@ -31,9 +33,12 @@ overflow-x: hidden;
 
                 .drag {
                     display: flex;
-                    justify-content: center;
                     align-items: center;
+                    justify-content: center;
+
                     width: 40px;
+                    min-width:40px;
+                    max-width: 40px;
 
                     .icon {
                         width: auto;
