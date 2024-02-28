@@ -37,6 +37,7 @@ export interface Chapter {
     modified: string;
     title: string;
     description: string;
+    module_id?: number;
     state: Equal.ModelState;
     creator?: number;
     order?: number;
