@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chapter, Module } from '../../../../../_types/qursus';
 import { Router } from '@angular/router';
 // @ts-ignore
@@ -8,7 +8,6 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { logging } from 'protractor';
 
 interface TreeNode {
     id: number;
@@ -68,34 +67,16 @@ export class CourseEditionPanelComponent implements OnInit {
         this.getModulesRessources();
     }
 
-    drop(event: CdkDragDrop<string[]>) {
+    drop(event: CdkDragDrop<string[]>): void {
         if (!event.isPointerOverContainer) return;
         const modules = this.modules;
-
         const draggedNodeIndex: number = event.previousIndex;
         const draggedNode: FlatNode = this.dataSource._expandedData.value[draggedNodeIndex];
         const droppedNodeIndex: number = event.currentIndex;
         let droppedNode: FlatNode = this.dataSource._expandedData.value[droppedNodeIndex];
-        let forceDroppedNodeToPlusOne: boolean = false;
-        let forceDroppedNodeToMinusOne: boolean = false;
-
-        // if (draggedNodeIndex < droppedNodeIndex) {
-        //     if (droppedNode.level === 0) {
-        //         droppedNode = this.dataSource._expandedData.value[droppedNodeIndex - 1];
-        //     }
-        // } else {
-        //     if (droppedNode.level === 0) {
-        //         droppedNode = this.dataSource._expandedData.value[droppedNodeIndex + 1];
-        //     }
-        // }
-
-        console.table([draggedNodeIndex, droppedNodeIndex]);
-        console.table([draggedNode, droppedNode]);
 
         // Prevent the dragged node lvl 1 to have a dropped node level 0 if dropped at the first position
         if (draggedNode.level === 1 && droppedNode.level === 0 && draggedNodeIndex > droppedNodeIndex) {
-            console.log('draggedNode.level === 1 && droppedNode.level === 0');
-            forceDroppedNodeToMinusOne = true;
             droppedNode = this.dataSource._expandedData.value[droppedNodeIndex - 1];
         }
 
@@ -108,7 +89,40 @@ export class CourseEditionPanelComponent implements OnInit {
             let droppedLessonIndex: number | undefined;
             let moduleOfDroppedLesson: Module | undefined;
 
-            console.log('draggedNode level 1');
+            const moduleLessonsNodeLength = modules.find((module: Module) => module.id === droppedNode.id)?.lessons
+                ?.length;
+
+            if (moduleLessonsNodeLength === 0) {
+                const droppedModule = modules.find((module: Module) => module.id === droppedNode.id);
+                let draggedLesson: Chapter | undefined;
+                let moduleOfLessonId: number | undefined;
+
+                modules.forEach((module: Module) => {
+                    if (module.lessons && module.lessons.find((lesson: Chapter) => lesson.id === draggedNode.id)) {
+                        draggedLesson = module.lessons.find((lesson: Chapter) => lesson.id === draggedNode.id);
+                        const draggedLessonIndex = module.lessons.findIndex(
+                            (lesson: Chapter) => lesson.id === draggedNode.id
+                        );
+                        module.lessons.splice(draggedLessonIndex, 1);
+                        moduleOfLessonId = module.id;
+                    }
+                });
+
+                if (draggedLesson && droppedModule) {
+                    draggedLesson.order = 1;
+                    draggedLesson.module_id = moduleOfLessonId;
+                    modules.forEach((module: Module): void => {
+                        if (module.id === droppedModule.id) {
+                            module.lessons!.push(draggedLesson!);
+                        }
+                    });
+                    this.updateEntityOrder('Chapter', draggedLesson);
+                }
+
+                this.modules = modules;
+                this.dataChange.next(modules);
+                return;
+            }
 
             // 1. find the lesson of the draggedNode
             for (let module of modules) {
@@ -149,7 +163,6 @@ export class CourseEditionPanelComponent implements OnInit {
             ) {
                 // 3. if both modules are the same, sort the lessons
                 if (moduleOfDraggedLesson === moduleOfDroppedLesson) {
-                    console.log('SAME MODULE', [moduleOfDraggedLesson, moduleOfDroppedLesson]);
                     const lessons = moduleOfDraggedLesson.lessons;
                     if (lessons) {
                         // 3.1 remove draggedNode from module.lessons
@@ -161,7 +174,7 @@ export class CourseEditionPanelComponent implements OnInit {
                         // 3.3 update order of lessons
                         lessons.forEach((lesson: Chapter, index: number) => {
                             lesson.order = index + 1;
-                            // this.updateEntityOrder('Chapter', lesson);
+                            this.updateEntityOrder('Chapter', lesson);
                         });
 
                         // 3.4 save changes
@@ -178,18 +191,14 @@ export class CourseEditionPanelComponent implements OnInit {
                     const lessonsOfDraggedModule = moduleOfDraggedLesson.lessons;
                     const lessonsOfDroppedModule = moduleOfDroppedLesson.lessons;
 
-                    console.log('DIFFERENT MODULES');
-
                     if (lessonsOfDraggedModule && lessonsOfDroppedModule) {
-                        console.table([draggedNode, droppedNode]);
-
                         // 4.1 remove draggedNode from draggedModule.lessons
                         lessonsOfDraggedModule.splice(draggedLessonIndex, 1);
 
                         // 4.2 update order of lessons of the draggedLesson of the first module
                         lessonsOfDraggedModule.forEach((lesson: Chapter, index: number) => {
                             lesson.order = index + 1;
-                            // this.updateEntityOrder('Chapter', lesson);
+                            this.updateEntityOrder('Chapter', lesson);
                         });
 
                         // 4.3 save changes
@@ -200,8 +209,6 @@ export class CourseEditionPanelComponent implements OnInit {
                         });
 
                         // 4.4 insert it at droppedNodeIndex of droppedModule.lessons
-                        // if (draggedNodeIndex < droppedNodeIndex) {
-                        console.log(`droppedLessonIndex = ${droppedLessonIndex}`);
                         if (draggedNodeIndex < droppedNodeIndex) {
                             if (droppedLessonIndex === 0 && droppedNode.level === 0) {
                                 lessonsOfDroppedModule.unshift(draggedLesson);
@@ -214,11 +221,6 @@ export class CourseEditionPanelComponent implements OnInit {
                                 lessonsOfDroppedModule.splice(droppedLessonIndex, 0, draggedLesson);
                             }
                         } else {
-                            console.table([
-                                'if index of dropped lesson is equal to the module lessons',
-                                droppedLessonIndex,
-                                lessonsOfDroppedModule.length - 1,
-                            ]);
                             if (droppedLessonIndex === lessonsOfDroppedModule.length - 1) {
                                 lessonsOfDroppedModule.push(draggedLesson);
                             } else {
@@ -228,14 +230,10 @@ export class CourseEditionPanelComponent implements OnInit {
 
                         draggedLesson.module_id = moduleOfDroppedLesson.id;
 
-                        // } else {
-                        //     lessonsOfDroppedModule.splice(droppedLessonIndex, 0, draggedLesson);
-                        // }
-
                         // 4.5 update order of lessons of the droppedLesson of the second module
                         lessonsOfDroppedModule.forEach((lesson: Chapter, index: number) => {
                             lesson.order = index + 1;
-                            // this.updateEntityOrder('Chapter', lesson);
+                            this.updateEntityOrder('Chapter', lesson);
                         });
 
                         // 4.6 save changes locally
@@ -265,7 +263,7 @@ export class CourseEditionPanelComponent implements OnInit {
                 // update order of modules
                 modules.forEach((module: Module, index: number) => {
                     module.order = index + 1;
-                    // this.updateEntityOrder('Module', module);
+                    this.updateEntityOrder('Module', module);
                 });
             }
         }
@@ -350,8 +348,14 @@ export class CourseEditionPanelComponent implements OnInit {
     }
 
     private updateEntityOrder(name: 'Module' | 'Chapter', entity: Module | Chapter): void {
+        const model: { [key: string]: any } = { order: entity.order };
+
+        if (name === 'Chapter' && 'module_id' in entity) {
+            model.module_id = entity.module_id;
+        }
+
         try {
-            this.api.update(`qursus\\${name}`, [entity.id], { order: entity.order });
+            this.api.update(`qursus\\${name}`, [entity.id], model);
         } catch (error) {
             console.error(error);
         }
