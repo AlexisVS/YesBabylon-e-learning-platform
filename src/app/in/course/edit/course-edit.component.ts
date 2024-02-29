@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { User } from '../../../_types/equal';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-course-edit',
@@ -17,7 +18,8 @@ export class CourseEditComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private api: ApiService
+        private api: ApiService,
+        private matSnackBar: MatSnackBar
     ) {}
 
     ngOnInit(): void {
@@ -63,8 +65,18 @@ export class CourseEditComponent implements OnInit {
             await this.api.update('qursus\\Course', [this.course.id], {
                 [field]: value,
             });
+            this.matSnackBar.open(`The course ${field} has been successfully updated.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         } catch (error) {
             console.error(error);
+            this.matSnackBar.open(`An error occurred while moving the course title field.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         }
     }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'sb-shared-lib';
 import { Chapter, Module } from '../../../../../_types/qursus';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-course-module-lesson-list-item',
@@ -16,7 +17,8 @@ export class CourseModuleLessonListItemComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private api: ApiService
+        private api: ApiService,
+        private matSnackBar: MatSnackBar
     ) {}
 
     public navigateToLesson(lessonId: string | number): void {
@@ -77,8 +79,18 @@ export class CourseModuleLessonListItemComponent implements OnInit {
     private updateLessonOrder(lesson: Chapter): void {
         try {
             this.api.update('qursus\\Chapter', [lesson.id], { order: lesson.order });
+            this.matSnackBar.open(`The lesson has been successfully moved.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         } catch (error) {
             console.error(error);
+            this.matSnackBar.open(`An error occurred while moving the lesson.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         }
     }
 }

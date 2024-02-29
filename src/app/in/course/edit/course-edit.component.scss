@@ -12,6 +12,7 @@
             display: flex;
             flex-direction: column;
             width: stretch;
+            padding: 32px 32px 0;
 
             .details {
                 display: flex;
@@ -19,27 +20,6 @@
 
                 width: 100%;
                 margin-bottom: 24px;
-                padding: 32px 32px 0;
-
-                .top-bar {
-                    display: flex;
-                    align-items: baseline;
-                    justify-content: space-between;
-                    margin-bottom: 16px;
-
-                    .actions {
-                        display: inline-flex;
-                        justify-content: space-evenly;
-
-                        > * {
-                            margin-left: 12px;
-                        }
-
-                        > :first-child {
-                            margin-left: 0;
-                        }
-                    }
-                }
 
                 .container {
                     display: flex;

@@ -1,20 +1,20 @@
-<section class="lesson-edit scrollbar-style" *ngIf="lesson">
+<section class="lesson-edit scrollbar-style">
     <div class="view">
-        <div class="details">
-            <div class="top-bar">
-                <eq-string
-                    [title]="'Lesson title'"
-                    [hint]="'Title of the lesson'"
-                    [value]="lesson.title"
-                    [mode]="'edit'"
-                    [size]="'large'"
-                    [required]="true"
-                    (valueChange)="updateLessonField($event, 'title')">
-                </eq-string>
-                <div class="actions">
-                    <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
-                </div>
-            </div>
+        <app-top-bar>
+            <ng-container ngProjectAs="[actions]">
+                <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
+            </ng-container>
+        </app-top-bar>
+        <div class="details" *ngIf="lesson">
+            <eq-string
+                [title]="'Lesson title'"
+                [hint]="'Title of the lesson'"
+                [value]="lesson.title"
+                [mode]="'edit'"
+                [size]="'large'"
+                [required]="true"
+                (valueChange)="updateLessonField($event, 'title')">
+            </eq-string>
             <eq-text
                 [title]="'Lesson description'"
                 [hint]="'Description of the lesson'"

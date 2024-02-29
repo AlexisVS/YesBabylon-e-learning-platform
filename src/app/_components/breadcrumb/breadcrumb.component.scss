@@ -1,0 +1,25 @@
+:host {
+    ul {
+        & {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            & {
+                display: inline;
+            }
+
+            &:before {
+                content: ">";
+                margin: 0 6px;
+            }
+
+            &:first-child:before {
+                content: "";
+                margin: 0;
+            }
+        }
+    }
+}

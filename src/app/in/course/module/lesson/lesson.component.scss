@@ -11,26 +11,6 @@
             width: 100%;
             margin-bottom: 24px;
 
-            .top-bar {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-
-                .actions {
-                    display: inline-flex;
-                    justify-content: space-evenly;
-                    padding-bottom: 14px;
-
-                    > * {
-                        margin-left: 12px;
-                    }
-
-                    > :first-child {
-                        margin-left: 0;
-                    }
-                }
-            }
-
             .additional-information {
                 display: flex;
                 gap: 16px;

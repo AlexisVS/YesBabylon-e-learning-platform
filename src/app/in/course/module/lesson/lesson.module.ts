@@ -9,6 +9,7 @@ import { LessonEditionPanelModule } from './edit/_components/lesson-edition-pane
 import { LessonEditComponent } from './edit/lesson-edit.component';
 import { CommonModule } from '@angular/common';
 import { SharedLibModule } from 'sb-shared-lib';
+import { AppInCoursesModule } from '../../../courses/courses.module';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { SharedLibModule } from 'sb-shared-lib';
         LessonEditionPanelModule,
         CommonModule,
         SharedLibModule,
+        AppInCoursesModule,
     ],
     declarations: [LessonComponent, LessonEditComponent],
 })

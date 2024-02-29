@@ -1,18 +1,18 @@
-<div class="lesson scrollbar-style" *ngIf="lesson">
-    <div class="details">
-        <div class="top-bar">
-            <eq-string
-                [title]="'Lesson title'"
-                [hint]="'Title of the lesson'"
-                [value]="lesson.title"
-                [mode]="'view'"
-                [size]="'large'"
-                [required]="true">
-            </eq-string>
-            <div class="actions">
-                <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
-            </div>
-        </div>
+<div class="lesson scrollbar-style">
+    <app-top-bar>
+        <ng-container ngProjectAs="[actions]">
+            <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
+        </ng-container>
+    </app-top-bar>
+    <div class="details" *ngIf="lesson">
+        <eq-string
+            [title]="'Lesson title'"
+            [hint]="'Title of the lesson'"
+            [value]="lesson.title"
+            [mode]="'view'"
+            [size]="'large'"
+            [required]="true">
+        </eq-string>
         <eq-text
             [title]="'Lesson description'"
             [hint]="'Description of the lesson'"

@@ -10,6 +10,7 @@ import { ModuleEditComponent } from './edit/module-edit.component';
 import { CommonModule } from '@angular/common';
 // @ts-ignore
 import { SharedLibModule } from 'sb-shared-lib';
+import { AppInCoursesModule } from '../../courses/courses.module';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { SharedLibModule } from 'sb-shared-lib';
         CommonModule,
         SharedLibModule,
         SharedLibModule,
+        AppInCoursesModule,
     ],
     declarations: [ModuleComponent, ModuleEditComponent],
 })

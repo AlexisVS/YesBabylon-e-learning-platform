@@ -1,7 +1,12 @@
-<section class="course-edit scrollbar-style" *ngIf="module">
+<section class="course-edit scrollbar-style">
     <div class="view">
-        <div class="details">
-            <div class="top-bar">
+        <app-top-bar>
+            <ng-container ngProjectAs="[actions]">
+                <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
+            </ng-container>
+        </app-top-bar>
+        <div class="details" *ngIf="module">
+            <div class="container">
                 <eq-string
                     [title]="'Module title'"
                     [hint]="'Title of the module'"
@@ -11,12 +16,6 @@
                     [required]="true"
                     (valueChange)="updateModuleField($event, 'title')">
                 </eq-string>
-                <div class="actions">
-                    <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
-                </div>
-            </div>
-
-            <div class="container">
                 <eq-text
                     [title]="'Module description'"
                     [hint]="'Description of the module'"
@@ -52,10 +51,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="content">
-            <h3 class="title text__course__title">Module lessons</h3>
-
+        <div class="content" *ngIf="module.chapters && module.chapters.length > 0">
+            <h3 class="title text__course__title">Lessons in this module</h3>
             <app-course-module-lesson-list-item></app-course-module-lesson-list-item>
         </div>
     </div>

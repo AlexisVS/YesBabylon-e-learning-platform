@@ -11,6 +11,7 @@ import { CourseEditionPanelModule } from './edit/_components/course-edition-pane
 import { CommonModule } from '@angular/common';
 // @ts-ignore
 import { SharedLibModule } from 'sb-shared-lib';
+import { AppInCoursesModule } from '../courses/courses.module';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { SharedLibModule } from 'sb-shared-lib';
         MatInputModule,
         CommonModule,
         SharedLibModule,
+        AppInCoursesModule,
     ],
     declarations: [CourseComponent, CourseEditComponent],
     exports: [],

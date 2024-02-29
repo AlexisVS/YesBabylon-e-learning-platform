@@ -17,7 +17,7 @@
                 <mat-tree
                     [dataSource]="dataSource"
                     [treeControl]="treeControl"
-                    (cdkDropListDropped)="drop($event)"
+                    (cdkDropListDropped)="onDrop($event)"
                     cdkDropList>
                     <mat-tree-node
                         class="cursor-pointer border-b"

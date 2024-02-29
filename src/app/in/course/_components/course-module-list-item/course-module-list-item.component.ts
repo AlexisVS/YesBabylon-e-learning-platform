@@ -4,6 +4,7 @@ import { Chapter, Module } from '../../../../_types/qursus';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-course-module-list-item',
@@ -16,7 +17,8 @@ export class CourseModuleListItemComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private api: ApiService
+        private api: ApiService,
+        private matSnackBar: MatSnackBar
     ) {}
 
     ngOnInit(): void {
@@ -77,8 +79,19 @@ export class CourseModuleListItemComponent implements OnInit {
     private updateModuleOrder(module: Module): void {
         try {
             this.api.update('qursus\\Module', [module.id], { order: module.order });
+
+            this.matSnackBar.open(`The module has been successfully moved.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         } catch (error) {
             console.error(error);
+            this.matSnackBar.open(`An error occurred while moving the module.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         }
     }
 }

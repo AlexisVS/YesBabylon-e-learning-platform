@@ -8,6 +8,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface TreeNode {
     id: number;
@@ -38,15 +39,12 @@ export class CourseEditionPanelComponent implements OnInit {
     treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
     dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
     expansionModel = new SelectionModel<any>(true);
-    dragging: boolean = false;
-    expandTimeout: any;
-    expandDelay: number = 1000;
-
     dataChange: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
     constructor(
         private router: Router,
-        private api: ApiService
+        private api: ApiService,
+        private matSnackBar: MatSnackBar
     ) {
         this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel, this.isExpandable, this.getChildren);
         this.treeControl = new FlatTreeControl<FlatNode>(this.getLevel, this.isExpandable);
@@ -55,20 +53,21 @@ export class CourseEditionPanelComponent implements OnInit {
         this.dataChange.subscribe(data => this.rebuildTreeForData(data));
     }
 
-    transformer = (node: TreeNode, level: number) =>
+    public transformer = (node: TreeNode, level: number) =>
         new FlatNode(!!node.lessons, node.order, node.title, level, node.id);
-    getLevel = (node: FlatNode) => node.level;
-    isExpandable = (node: FlatNode) => node.expandable;
-    getChildren = (node: TreeNode): Observable<any> => of(node.lessons);
+    public getLevel = (node: FlatNode) => node.level;
+    public isExpandable = (node: FlatNode) => node.expandable;
+    public getChildren = (node: TreeNode): Observable<any> => of(node.lessons);
 
-    hasChild = (_: number, node: FlatNode) => node.expandable;
+    public hasChild = (_: number, node: FlatNode) => node.expandable;
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.getModulesRessources();
     }
 
-    drop(event: CdkDragDrop<string[]>): void {
+    public onDrop(event: CdkDragDrop<string[]>): void {
         if (!event.isPointerOverContainer) return;
+
         const modules = this.modules;
         const draggedNodeIndex: number = event.previousIndex;
         const draggedNode: FlatNode = this.dataSource._expandedData.value[draggedNodeIndex];
@@ -272,37 +271,10 @@ export class CourseEditionPanelComponent implements OnInit {
     }
 
     /**
-     * Experimental - opening tree nodes as you drag over them
-     */
-    dragStart() {
-        this.dragging = true;
-    }
-
-    dragEnd() {
-        this.dragging = false;
-    }
-
-    dragHover(node: FlatNode) {
-        if (this.dragging) {
-            clearTimeout(this.expandTimeout);
-            this.expandTimeout = setTimeout(() => {
-                this.treeControl.expand(node);
-            }, this.expandDelay);
-        }
-    }
-
-    dragHoverEnd() {
-        if (this.dragging) {
-            clearTimeout(this.expandTimeout);
-        }
-    }
-
-    /**
      * The following methods are for persisting the tree expand state
      * after being rebuilt
      */
-
-    rebuildTreeForData(data: any) {
+    public rebuildTreeForData(data: any): void {
         this.dataSource.data = data;
         this.expansionModel.selected.forEach(id => {
             const node = this.treeControl.dataNodes.find(n => n.id === id);
@@ -354,10 +326,23 @@ export class CourseEditionPanelComponent implements OnInit {
             model.module_id = entity.module_id;
         }
 
+        const entityName = name === 'Module' ? 'module' : 'lesson';
         try {
             this.api.update(`qursus\\${name}`, [entity.id], model);
+
+            this.matSnackBar.open(`The ${entityName} has been successfully moved.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         } catch (error) {
             console.error(error);
+
+            this.matSnackBar.open(`An error occurred while updating the ${entityName}.`, undefined, {
+                duration: 4000,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom',
+            });
         }
     }
 }
