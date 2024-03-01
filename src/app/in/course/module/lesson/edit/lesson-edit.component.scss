@@ -5,60 +5,63 @@
         overflow-y: auto;
         height: 100%;
         max-height: calc(100svh - 55px - 20px);
-        padding: 32px;
 
-        .details {
-            display: flex;
-            width: 100%;
-            margin-bottom: 24px;
+        .container {
+            padding: 32px;
 
-
-            .left {
+            .details {
                 display: flex;
-                flex-direction: column;
                 width: 100%;
+                margin-bottom: 24px;
 
 
-            }
-
-            .right {
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
-                align-items: center;
-                justify-content: flex-start;
-
-                width: 100%;
-
-                .additional-information {
+                .left {
                     display: flex;
-                    gap: 16px;
-                    align-items: flex-end;
-                    justify-content: space-evenly;
+                    flex-direction: column;
+                    width: 100%;
 
-                    width: 350px;
-                    padding: 16px;
 
-                    font-size: 14px;
-                    font-weight: 480;
-                    color: color.adjust(black, $alpha: -0.6);
-                    white-space: nowrap;
+                }
 
-                    background-color: color.adjust(black, $alpha: -0.96);
-                    border-radius: 8px;
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    align-items: center;
+                    justify-content: flex-start;
 
-                    .last-update,
-                    .author,
-                    .pages-count,
-                    .learning-time {
+                    width: 100%;
+
+                    .additional-information {
                         display: flex;
-                        flex-direction: column;
-                        gap: 4px;
-                        align-items: center;
-                        justify-content: center;
+                        gap: 16px;
+                        align-items: flex-end;
+                        justify-content: space-evenly;
 
-                        span {
-                            color: color.adjust(black, $alpha: -0.4);
+                        width: 350px;
+                        padding: 16px;
+
+                        font-size: 14px;
+                        font-weight: 480;
+                        color: color.adjust(black, $alpha: -0.6);
+                        white-space: nowrap;
+
+                        background-color: color.adjust(black, $alpha: -0.96);
+                        border-radius: 8px;
+
+                        .last-update,
+                        .author,
+                        .pages-count,
+                        .learning-time {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+                            align-items: center;
+                            justify-content: center;
+
+                            span {
+                                color: color.adjust(black, $alpha: -0.4);
+                            }
                         }
                     }
                 }

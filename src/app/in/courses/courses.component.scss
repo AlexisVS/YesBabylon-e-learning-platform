@@ -3,19 +3,21 @@
     height: calc(100vh - 55px - 20px);
 
     .courses {
-        padding: 32px;
-    }
+        .container {
+            padding: 32px;
 
-    .content {
-        display: grid;
-        grid-gap: 16px;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .content {
+                display: grid;
+                grid-gap: 16px;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-        .card {
-            cursor: pointer;
+                .card {
+                    cursor: pointer;
 
-            .title {
-                color: #424242;
+                    .title {
+                        color: #424242;
+                    }
+                }
             }
         }
     }
