@@ -1,9 +1,8 @@
 :host {
     display: block;
-    width: max-content;
+    width: 480px;
 
     .edit-panel {
-        width: 100%;
         height: calc(100svh - 103px);
         padding: 16px 16px 0 8px;
 
@@ -22,10 +21,7 @@
                 width: 100%;
                 height: min-content;
                 margin-bottom: 8px;
-                padding: 4px 8px 4px 4px;
-
-                border: 1px solid black;
-                border-radius: 5px;
+                padding: 4px 8px 0 4px;
 
                 > *|* {
                     pointer-events: none;
@@ -48,14 +44,41 @@
 
                 .content {
                     padding-left: 5px;
+                    width: 100%;
 
                     .title {
+                        width: 92%;
                         font-size: 17px;
-                        font-weight: 600;
                         color: #424242;
+
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
         }
     }
 }
+
+.cdk-drag-preview {
+    background: #f5f5f5;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1),
+    0 0 1px 1px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: row;
+    height: min-content;
+    margin-bottom: 8px;
+    padding: 4px 8px 0 4px;
+
+    h4 {
+        font-size: 17px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 87%;
+        margin-left: 3%;
+    }
+}
+

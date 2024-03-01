@@ -85,12 +85,12 @@ app-menu-list-item.hidden {
     flex: 0 0 480px;
     flex-direction: column;
 
-    //width: 250px;
+    // width: 250px;
 
-    //flex-basis: 250px;
+    // flex-basis: 250px;
     order: 3;
 
-    //margin-right:  -250px;
+    // margin-right:  -250px;
     width: 480px;
     margin-top: 55px;
     margin-right: calc(480px * -1);
@@ -109,8 +109,9 @@ app-menu-list-item.hidden {
     margin-right: 0;
 }
 
-.app-header,
+/* stylelint-disable no-descending-specificity */
 .app-asidemenu,
+.app-header,
 .app-main,
 .app-sidebar {
     transition: margin-left 0.25s,

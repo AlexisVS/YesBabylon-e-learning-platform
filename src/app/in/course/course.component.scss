@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 :host {
     .course {
         overflow-y: auto;
@@ -17,44 +19,14 @@
                 width: 100%;
 
 
-                .additional-information {
-                    display: flex;
-                    gap: 16px;
-                    align-items: flex-end;
-                    justify-content: space-evenly;
-
-                    width: max-content;
-                    padding: 16px;
-
-                    font-size: 14px;
-                    font-weight: 480;
-                    color: transparentize(black, 0.6);
-                    white-space: nowrap;
-
-                    background-color: transparentize(black, 0.96);
-                    border-radius: 8px;
-
-                    .last-update,
-                    .author,
-                    .modules-count,
-                    .learning-time {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 4px;
-                        align-items: center;
-                        justify-content: center;
-
-                        span {
-                            color: transparentize(black, 0.4);
-                        }
-                    }
-                }
             }
 
             .right {
                 display: flex;
-                align-items: flex-start;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 24px;
 
                 width: 100%;
                 margin-top: 1.5rem;
@@ -68,12 +40,45 @@
                     object-fit: contain;
                     border-radius: 8px;
                 }
+
+                .additional-information {
+                    display: flex;
+                    gap: 16px;
+                    align-items: flex-end;
+                    justify-content: space-evenly;
+
+                    width: 350px;
+                    padding: 16px;
+
+                    font-size: 14px;
+                    font-weight: 480;
+                    color: color.adjust(black, $alpha: -0.6);
+                    white-space: nowrap;
+
+                    background-color: color.adjust(black, $alpha: -0.96);
+                    border-radius: 8px;
+
+                    .last-update,
+                    .author,
+                    .modules-count,
+                    .learning-time {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                        align-items: center;
+                        justify-content: center;
+
+                        span {
+                            color: color.adjust(black, $alpha: -0.4);
+                        }
+                    }
+                }
             }
         }
 
         .content {
             .title {
-                margin-bottom: 16px;
+                margin-bottom: 8px;
             }
         }
     }

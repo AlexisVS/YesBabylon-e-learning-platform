@@ -14,9 +14,9 @@
         </ng-template>
         <div class="edit-panel scrollbar-style">
             <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="drop-list">
-                <div cdkDrag class="item mat-elevation-z1" *ngFor="let lesson of lessons; trackBy: trackLessonById">
+                <div cdkDrag class="item" *ngFor="let lesson of lessons; trackBy: trackLessonById">
                     <div class="drag">
-                        <mat-icon class="icon">drag_indicator</mat-icon>
+                        <mat-icon class="icon">drag_handle</mat-icon>
                     </div>
                     <div class="content">
                         <h4 class="title">{{ lesson.title }}</h4>

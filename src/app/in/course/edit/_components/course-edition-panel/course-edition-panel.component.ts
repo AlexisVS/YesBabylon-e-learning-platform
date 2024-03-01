@@ -7,7 +7,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface TreeNode {
@@ -94,7 +94,7 @@ export class CourseEditionPanelComponent implements OnInit {
             if (moduleLessonsNodeLength === 0) {
                 const droppedModule = modules.find((module: Module) => module.id === droppedNode.id);
                 let draggedLesson: Chapter | undefined;
-                let moduleOfLessonId: number | undefined;
+                let moduleIdOfLesson: number | undefined;
 
                 modules.forEach((module: Module) => {
                     if (module.lessons && module.lessons.find((lesson: Chapter) => lesson.id === draggedNode.id)) {
@@ -103,13 +103,13 @@ export class CourseEditionPanelComponent implements OnInit {
                             (lesson: Chapter) => lesson.id === draggedNode.id
                         );
                         module.lessons.splice(draggedLessonIndex, 1);
-                        moduleOfLessonId = module.id;
+                        moduleIdOfLesson = module.id;
                     }
                 });
 
                 if (draggedLesson && droppedModule) {
                     draggedLesson.order = 1;
-                    draggedLesson.module_id = moduleOfLessonId;
+                    draggedLesson.module_id = moduleIdOfLesson;
                     modules.forEach((module: Module): void => {
                         if (module.id === droppedModule.id) {
                             module.lessons!.push(draggedLesson!);
@@ -304,7 +304,7 @@ export class CourseEditionPanelComponent implements OnInit {
             for (const module of this.modules) {
                 await this.api
                     .collect('qursus\\Chapter', ['module_id', '=', module.id], ['id', 'title', 'order'])
-                    .then(response => {
+                    .then((response: Chapter[] & TreeNode[]) => {
                         module.lessons = response.sort((a: Chapter, b: Chapter): number => {
                             if (a.order && b.order) {
                                 return a.order - b.order;

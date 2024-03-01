@@ -5,44 +5,48 @@
         </ng-container>
     </app-top-bar>
     <div class="details" *ngIf="module">
-        <eq-string
-            [title]="'Module title'"
-            [hint]="'Title of the module'"
-            [value]="module.title"
-            [mode]="'view'"
-            [size]="'large'"
-            [required]="true">
-        </eq-string>
-        <eq-text
-            [title]="'Module description'"
-            [hint]="'Description of the module'"
-            [value]="module.description"
-            [mode]="'view'"
-            [size]="'normal'"
-            [required]="true"
-            [autoGrow]="true"
-            [minHeight]="88">
-        </eq-text>
+        <div class="left">
+            <eq-string
+                [title]="'Module title'"
+                [hint]="'Title of the module'"
+                [value]="module.title"
+                [mode]="'view'"
+                [size]="'large'"
+                [required]="true">
+            </eq-string>
+            <eq-text
+                [title]="'Module description'"
+                [hint]="'Description of the module'"
+                [value]="module.description"
+                [mode]="'view'"
+                [size]="'normal'"
+                [required]="true"
+                [autoGrow]="true"
+                [minHeight]="88">
+            </eq-text>
+        </div>
 
-        <div class="additional-information">
-            <span class="last-update" title="Last modification date">
-                <mat-icon>schedule</mat-icon>
-                <span> {{ module.modified | date: 'shortDate' }}</span>
-            </span>
+        <div class="right">
+            <div class="additional-information">
+                <span class="last-update" title="Last modification date">
+                    <mat-icon>schedule</mat-icon>
+                    <span> {{ module.modified | date: 'shortDate' }}</span>
+                </span>
 
-            <div class="author" title="Author">
-                <mat-icon>person</mat-icon>
-                <span>{{ author }}</span>
-            </div>
+                <div class="author" title="Author">
+                    <mat-icon>person</mat-icon>
+                    <span>{{ author }}</span>
+                </div>
 
-            <div class="lessons-count" title="Lessons count">
-                <mat-icon>bookmark</mat-icon>
-                <span>{{ module.chapters?.length }}</span>
-            </div>
+                <div class="lessons-count" title="Lessons count">
+                    <mat-icon>bookmark</mat-icon>
+                    <span>{{ module.chapters?.length }}</span>
+                </div>
 
-            <div class="learning-time" title="Learning time">
-                <mat-icon>timer</mat-icon>
-                <span>{{ formatDuration(module.duration) }}</span>
+                <div class="learning-time" title="Learning time">
+                    <mat-icon>timer</mat-icon>
+                    <span>{{ formatDuration(module.duration) }}</span>
+                </div>
             </div>
         </div>
     </div>

@@ -1,11 +1,11 @@
 <section class="lesson-edit scrollbar-style">
-    <div class="view">
-        <app-top-bar>
-            <ng-container ngProjectAs="[actions]">
-                <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
-            </ng-container>
-        </app-top-bar>
-        <div class="details" *ngIf="lesson">
+    <app-top-bar>
+        <ng-container ngProjectAs="[actions]">
+            <button mat-raised-button (click)="navigateToViewMode()" color="primary">View</button>
+        </ng-container>
+    </app-top-bar>
+    <div class="details" *ngIf="lesson">
+        <div class="left">
             <eq-string
                 [title]="'Lesson title'"
                 [hint]="'Title of the lesson'"
@@ -27,6 +27,9 @@
                 (valueChange)="updateLessonField($event, 'description')">
                 >
             </eq-text>
+        </div>
+
+        <div class="right">
             <div class="additional-information">
                 <span class="last-update" title="Last modification date">
                     <mat-icon>schedule</mat-icon>

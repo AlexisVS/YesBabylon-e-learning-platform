@@ -1,75 +1,75 @@
+@use 'sass:color';
+
 :host {
     .course-edit {
         overflow-y: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
         height: 100%;
         max-height: calc(100svh - 55px - 20px);
+        padding: 32px;
 
-        .view {
+        .details {
             display: flex;
-            flex-direction: column;
-            width: stretch;
-            padding: 32px 32px 0;
+            width: 100%;
+            margin-bottom: 24px;
 
-
-            .details {
+            .left {
                 display: flex;
                 flex-direction: column;
+                width: 100%;
+
+
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 24px;
 
                 width: 100%;
-                margin-bottom: 24px;
+                margin-top: 1.5rem;
+                margin-left: 1.5rem;
 
-                .container {
+                .additional-information {
                     display: flex;
-                    flex-direction: column;
-                    width: stretch;
-                    margin-right: 0.5rem;
+                    gap: 16px;
+                    align-items: flex-end;
+                    justify-content: space-evenly;
 
-                    .additional-information {
+                    width: 350px;
+                    padding: 16px;
+
+                    font-size: 14px;
+                    font-weight: 480;
+                    color: color.adjust(black, $alpha: -0.6);
+                    white-space: nowrap;
+
+                    background-color: color.adjust(black, $alpha: -0.96);
+                    border-radius: 8px;
+
+                    .last-update,
+                    .author,
+                    .lessons-count,
+                    .learning-time {
                         display: flex;
-                        gap: 16px;
-                        align-items: flex-end;
-                        justify-content: space-evenly;
+                        flex-direction: column;
+                        gap: 4px;
+                        align-items: center;
+                        justify-content: center;
 
-                        width: calc(100% - 80px);
-                        padding: 16px;
-
-                        font-size: 14px;
-                        font-weight: 480;
-                        color: transparentize(black, 0.6);
-                        white-space: nowrap;
-
-                        background-color: transparentize(black, 0.96);
-                        border-radius: 8px;
-
-                        .last-update,
-                        .author,
-                        .lessons-count,
-                        .learning-time {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 4px;
-                            align-items: center;
-                            justify-content: center;
-
-                            span {
-                                color: transparentize(black, 0.4);
-                            }
+                        span {
+                            color: color.adjust(black, $alpha: -0.4);
                         }
                     }
                 }
             }
+        }
 
-            .content {
-                padding: 0 32px;
-
-                .title {
-                    margin-top: 0.5rem;
-                    margin-bottom: 0;
-                }
+        .content {
+            .title {
+                margin-top: 0.5rem;
+                margin-bottom: 8px;
             }
         }
     }

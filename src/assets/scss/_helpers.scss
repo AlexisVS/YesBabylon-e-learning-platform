@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -7,7 +9,7 @@
 }
 
 .scrollbar-style {
-    $colorPrimary: #3f51b5;
+    $color-primary: #3f51b5;
 
     &::-webkit-scrollbar {
         width: 8px;
@@ -18,10 +20,10 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: lighten($colorPrimary, 5%);
+        background: color.adjust($color-primary, $lightness: 5%);
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: $colorPrimary;
+        background: $color-primary;
     }
 }
