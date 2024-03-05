@@ -9,25 +9,29 @@
 
             .details {
                 display: flex;
+                gap: 24px;
+                justify-content: space-between;
+
                 width: 100%;
                 margin-bottom: 24px;
 
                 .left {
                     display: flex;
                     flex-direction: column;
+                    gap: 24px;
+
                     width: 100%;
+                    max-width: 640px;
                 }
 
                 .right {
                     display: flex;
                     flex-direction: column;
                     gap: 24px;
-                    align-items: center;
+                    align-items: flex-end;
                     justify-content: flex-start;
 
-                    width: 100%;
-                    margin-top: 1.5rem;
-                    margin-left: 1.5rem;
+                    max-width: 350px;
 
                     .additional-information {
                         display: flex;
