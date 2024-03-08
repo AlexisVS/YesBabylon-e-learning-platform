@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Chapter, Module } from '../../../../_types/qursus';
+import { Chapter, Module } from '../../../../_types/learn';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -42,7 +42,7 @@ export class CourseModuleListItemComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Module',
+                    'learn\\Module',
                     ['course_id', '=', courseId],
                     ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id']
                 )
@@ -78,7 +78,7 @@ export class CourseModuleListItemComponent implements OnInit {
 
     private updateModuleOrder(module: Module): void {
         try {
-            this.api.update('qursus\\Module', [module.id], { order: module.order });
+            this.api.update('learn\\Module', [module.id], { order: module.order });
 
             this.matSnackBar.open(`The module has been successfully moved.`, undefined, {
                 duration: 4000,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
-import { Chapter, Module } from '../../../../../_types/qursus';
+import { Chapter, Module } from '../../../../../_types/learn';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -42,7 +42,7 @@ export class CourseModuleLessonListItemComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Chapter',
+                    'learn\\Chapter',
                     [['module_id', '=', moduleId]],
                     ['title', 'subtitle', 'description', 'order']
                 )
@@ -78,7 +78,7 @@ export class CourseModuleLessonListItemComponent implements OnInit {
 
     private updateLessonOrder(lesson: Chapter): void {
         try {
-            this.api.update('qursus\\Chapter', [lesson.id], { order: lesson.order });
+            this.api.update('learn\\Chapter', [lesson.id], { order: lesson.order });
             this.matSnackBar.open(`The lesson has been successfully moved.`, undefined, {
                 duration: 4000,
                 horizontalPosition: 'left',

@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
-import { Course } from '../../_types/qursus';
+import { Course } from '../../_types/learn';
 
 @Component({
     selector: 'app-courses',
@@ -32,7 +32,7 @@ export class CoursesComponent implements OnInit {
     public async getCourses(): Promise<void> {
         try {
             await this.api
-                .collect('qursus\\Course', [], ['title', 'subtitle', 'description'])
+                .collect('learn\\Course', [], ['title', 'subtitle', 'description'])
                 .then((response: Course[]): void => {
                     this.courses = response;
                 });

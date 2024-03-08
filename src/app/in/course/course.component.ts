@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Course } from '../../_types/qursus';
+import { Course } from '../../_types/learn';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -37,7 +37,7 @@ export class CourseComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Course',
+                    'learn\\Course',
                     [['id', '=', courseId]],
                     [
                         'title',

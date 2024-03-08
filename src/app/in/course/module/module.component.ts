@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Module } from '../../../_types/qursus';
+import { Module } from '../../../_types/learn';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
 import { User } from '../../../_types/equal';
@@ -34,7 +34,7 @@ export class ModuleComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Module',
+                    'learn\\Module',
                     [['id', '=', moduleId]],
                     [
                         'title',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../../../_types/qursus';
+import { Course } from '../../../_types/learn';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -39,7 +39,7 @@ export class CourseEditComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Course',
+                    'learn\\Course',
                     [['id', '=', courseId]],
                     [
                         'title',
@@ -62,7 +62,7 @@ export class CourseEditComponent implements OnInit {
 
     public async updateCourseField(value: string | null, field: string): Promise<void> {
         try {
-            await this.api.update('qursus\\Course', [this.course.id], {
+            await this.api.update('learn\\Course', [this.course.id], {
                 [field]: value,
             });
             this.matSnackBar.open(`The course ${field} has been successfully updated.`, undefined, {

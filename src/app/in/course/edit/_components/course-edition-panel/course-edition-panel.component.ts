@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter, Module } from '../../../../../_types/qursus';
+import { Chapter, Module } from '../../../../../_types/learn';
 import { Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -287,7 +287,7 @@ export class CourseEditionPanelComponent implements OnInit {
         const courseId: number = +urlSegments[urlSegments.length - 2];
         try {
             const modules: Module[] & TreeNode[] = await this.api.collect(
-                'qursus\\Module',
+                'learn\\Module',
                 ['course_id', '=', courseId],
                 ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id']
             );
@@ -303,7 +303,7 @@ export class CourseEditionPanelComponent implements OnInit {
         try {
             for (const module of this.modules) {
                 await this.api
-                    .collect('qursus\\Chapter', ['module_id', '=', module.id], ['id', 'title', 'order'])
+                    .collect('learn\\Chapter', ['module_id', '=', module.id], ['id', 'title', 'order'])
                     .then((response: Chapter[] & TreeNode[]) => {
                         module.lessons = response.sort((a: Chapter, b: Chapter): number => {
                             if (a.order && b.order) {
@@ -328,7 +328,7 @@ export class CourseEditionPanelComponent implements OnInit {
 
         const entityName = name === 'Module' ? 'module' : 'lesson';
         try {
-            this.api.update(`qursus\\${name}`, [entity.id], model);
+            this.api.update(`learn\\${name}`, [entity.id], model);
 
             this.matSnackBar.open(`The ${entityName} has been successfully moved.`, undefined, {
                 duration: 4000,

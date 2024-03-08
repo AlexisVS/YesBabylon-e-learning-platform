@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter } from '../../../../../_types/qursus';
+import { Chapter } from '../../../../../_types/learn';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -36,7 +36,7 @@ export class LessonEditComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Chapter',
+                    'learn\\Chapter',
                     [['id', '=', moduleId]],
                     ['title', 'page_count', 'pages', 'order', 'creator', 'description']
                 )
@@ -50,7 +50,7 @@ export class LessonEditComponent implements OnInit {
 
     public async updateLessonField(value: string | null, field: string): Promise<void> {
         try {
-            await this.api.update('qursus\\Course', [this.lesson.id], {
+            await this.api.update('learn\\Course', [this.lesson.id], {
                 [field]: value,
             });
 

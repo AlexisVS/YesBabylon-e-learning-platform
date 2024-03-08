@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter } from '../../../../_types/qursus';
+import { Chapter } from '../../../../_types/learn';
 import { ActivatedRoute, Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -34,7 +34,7 @@ export class LessonComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Chapter',
+                    'learn\\Chapter',
                     [['id', '=', moduleId]],
                     ['title', 'page_count', 'pages', 'order', 'creator', 'description']
                 )

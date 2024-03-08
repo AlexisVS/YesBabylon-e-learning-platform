@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter } from '../../../../../../_types/qursus';
+import { Chapter } from '../../../../../../_types/learn';
 import { Router } from '@angular/router';
 // @ts-ignore
 import { ApiService } from 'sb-shared-lib';
@@ -30,7 +30,7 @@ export class ModuleEditionPanelComponent implements OnInit {
         try {
             await this.api
                 .collect(
-                    'qursus\\Chapter',
+                    'learn\\Chapter',
                     [['module_id', '=', moduleId]],
                     ['title', 'subtitle', 'description', 'order']
                 )
@@ -66,7 +66,7 @@ export class ModuleEditionPanelComponent implements OnInit {
 
     private updateLessonOrder(lesson: Chapter): void {
         try {
-            this.api.update('qursus\\Chapter', [lesson.id], { order: lesson.order });
+            this.api.update('learn\\Chapter', [lesson.id], { order: lesson.order });
 
             this.matSnackBar.open(`The module has been successfully moved.`, undefined, {
                 duration: 4000,
