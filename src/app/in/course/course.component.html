@@ -2,6 +2,12 @@
     <app-top-bar>
         <ng-container ngProjectAs="[actions]">
             <button mat-raised-button (click)="navigateToEditMode()" color="primary">Edit</button>
+            <a *ngIf="hasCourseAccess" mat-raised-button [color]="'accent'" [href]="course.title"
+                >Poursuivre le cours</a
+            >
+            <button (click)="obtainCourseAccess()" *ngIf="!hasCourseAccess" mat-raised-button [color]="'accent'">
+                Obtenir le cours
+            </button>
         </ng-container>
     </app-top-bar>
     <div class="container">

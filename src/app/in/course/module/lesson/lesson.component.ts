@@ -14,6 +14,11 @@ export class LessonComponent implements OnInit {
     public lesson: Chapter;
     public author: string;
 
+    public user: Record<string, any>;
+    public userAccess: Record<string, any>;
+    public courseTitle: string;
+    public hasCourseAccess: boolean;
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -27,6 +32,25 @@ export class LessonComponent implements OnInit {
     private async fetchApiResources(): Promise<void> {
         await this.getLesson();
         await this.getAuthor();
+
+        const courseId: string | null | undefined = this.route.snapshot.parent?.parent?.parent?.paramMap.get('id');
+
+        if (typeof courseId === 'string') {
+            this.courseTitle = (await this.api.collect('learn\\Course', [['id', '=', courseId]], ['title']))[0].title;
+
+            this.user = await this.api.get('userinfo');
+
+            this.userAccess = await this.api.collect(
+                'learn\\UserAccess',
+                [
+                    ['user_id', '=', this.user.id],
+                    ['course_id', '=', courseId],
+                ],
+                ['code', 'code_alpha', 'course_id', 'master_user_id', 'user_id', 'is_complete']
+            );
+
+            this.hasCourseAccess = this.userAccess.length > 0;
+        }
     }
 
     private async getLesson(): Promise<void> {

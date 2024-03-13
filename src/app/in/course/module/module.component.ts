@@ -13,6 +13,10 @@ import { User } from '../../../_types/equal';
 export class ModuleComponent implements OnInit {
     public module: Module;
     public author: string;
+    public user: Record<string, any>;
+    public userAccess: Record<string, any>;
+    public courseTitle: string;
+    public hasCourseAccess: boolean;
 
     constructor(
         private router: Router,
@@ -27,6 +31,22 @@ export class ModuleComponent implements OnInit {
     private async fetchApiResources(): Promise<void> {
         await this.getModule();
         await this.getAuthor();
+
+        this.courseTitle = (
+            await this.api.collect('learn\\Course', [['id', '=', this.module.course_id]], ['title'])
+        )[0].title;
+
+        this.user = await this.api.get('userinfo');
+        this.userAccess = await this.api.collect(
+            'learn\\UserAccess',
+            [
+                ['user_id', '=', this.user.id],
+                ['course_id', '=', this.module.course_id],
+            ],
+            ['code', 'code_alpha', 'course_id', 'master_user_id', 'user_id', 'is_complete']
+        );
+
+        this.hasCourseAccess = this.userAccess.length > 0;
     }
 
     private async getModule(): Promise<void> {
@@ -40,6 +60,7 @@ export class ModuleComponent implements OnInit {
                         'title',
                         'subtitle',
                         'description',
+                        'course_id',
                         'page_count',
                         'chapter_count',
                         'chapters',
