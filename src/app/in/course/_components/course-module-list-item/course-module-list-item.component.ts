@@ -40,21 +40,12 @@ export class CourseModuleListItemComponent implements OnInit {
     private async getModules(): Promise<void> {
         const courseId: number = this.route.snapshot.params?.id;
         try {
-            await this.api
-                .collect(
-                    'learn\\Module',
-                    ['course_id', '=', courseId],
-                    ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id']
-                )
-                .then((response: Module[]): void => {
-                    this.modules = response.sort((a: Module, b: Module): number => {
-                        if (a.order && b.order) {
-                            return a.order - b.order;
-                        }
-
-                        return a.id - b.id;
-                    });
-                });
+            await this.api.collect(
+                'learn\\Module',
+                ['course_id', '=', courseId],
+                ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id'],
+                'order'
+            );
         } catch (error) {
             console.error(error);
         }

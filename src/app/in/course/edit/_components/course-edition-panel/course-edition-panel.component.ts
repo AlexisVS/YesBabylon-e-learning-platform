@@ -7,7 +7,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CdkDragDrop, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface TreeNode {
@@ -286,12 +286,12 @@ export class CourseEditionPanelComponent implements OnInit {
         const urlSegments: string[] = this.router.url.split('/');
         const courseId: number = +urlSegments[urlSegments.length - 2];
         try {
-            const modules: Module[] & TreeNode[] = await this.api.collect(
+            this.modules = await this.api.collect(
                 'learn\\Module',
                 ['course_id', '=', courseId],
-                ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id']
+                ['id', 'title', 'page_count', 'description', 'duration', 'order', 'chapter_count', 'course_id'],
+                'order'
             );
-            this.modules = modules.sort((a: Module, b: Module): number => a.order! - b.order!);
             await this.getLessonsRessources();
             this.dataChange.next(this.modules);
         } catch (error) {
@@ -302,17 +302,12 @@ export class CourseEditionPanelComponent implements OnInit {
     private async getLessonsRessources(): Promise<void> {
         try {
             for (const module of this.modules) {
-                await this.api
-                    .collect('learn\\Chapter', ['module_id', '=', module.id], ['id', 'title', 'order'])
-                    .then((response: Chapter[] & TreeNode[]) => {
-                        module.lessons = response.sort((a: Chapter, b: Chapter): number => {
-                            if (a.order && b.order) {
-                                return a.order - b.order;
-                            }
-
-                            return a.id - b.id;
-                        });
-                    });
+                await this.api.collect(
+                    'learn\\Chapter',
+                    ['module_id', '=', module.id],
+                    ['id', 'title', 'order'],
+                    'order'
+                );
             }
         } catch (error) {
             console.error(error);

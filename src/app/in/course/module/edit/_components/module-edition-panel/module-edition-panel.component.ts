@@ -28,21 +28,12 @@ export class ModuleEditionPanelComponent implements OnInit {
         const urlSegments: string[] = this.router.url.split('/');
         const moduleId: number = +urlSegments[urlSegments.length - 2];
         try {
-            await this.api
-                .collect(
-                    'learn\\Chapter',
-                    [['module_id', '=', moduleId]],
-                    ['title', 'subtitle', 'description', 'order']
-                )
-                .then((response: Chapter[]): void => {
-                    this.lessons = response.sort((a: Chapter, b: Chapter): number => {
-                        if (a.order && b.order) {
-                            return a.order - b.order;
-                        }
-
-                        return a.id - b.id;
-                    });
-                });
+            await this.api.collect(
+                'learn\\Chapter',
+                [['module_id', '=', moduleId]],
+                ['title', 'subtitle', 'description', 'order'],
+                'order'
+            );
         } catch (error) {
             console.error(error);
         }

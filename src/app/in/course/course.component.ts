@@ -38,6 +38,7 @@ export class CourseComponent implements OnInit {
         }
 
         this.user = await this.api.get('userinfo');
+
         this.userAccess = await this.api.collect(
             'learn\\UserAccess',
             [
